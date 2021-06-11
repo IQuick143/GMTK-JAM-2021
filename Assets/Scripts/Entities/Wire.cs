@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wire : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Wire : Entity {
+	public Connection connection;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override GameObject GetPrefab() {
+		throw new System.NotImplementedException();
+	}
 }

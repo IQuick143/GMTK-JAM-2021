@@ -10,6 +10,8 @@ public class TileHandler : MonoBehaviour {
 
 	public TileManager manager;
 
+	private Entity entity;
+
 	// Start is called before the first frame update
 	void Start() {
 		
@@ -27,6 +29,20 @@ public class TileHandler : MonoBehaviour {
 
 	public IEnumerable<TileHandler> GetNeighbours() {
 		return this.manager.tiles.GetNeighbours(this.x, this.y);
+	}
+
+	public void SetObject(Entity entity) {
+		this.entity = entity;
+		this.UpdateVisuals();
+	}
+
+	public void UpdateVisuals() {
+		// DELETE VISUAL OBJECT
+
+		if (entity != null) {
+			// ADD A VISUAL OBJECT BASED ON 
+			// entity.GetPrefab()
+		}
 	}
 
 	// Update is called once per frame
