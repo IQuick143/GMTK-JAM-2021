@@ -8,7 +8,8 @@ public class TileHandler : MonoBehaviour {
 	private float radius = 1/sqrt_3;
 	private int x=0,y=0;
 
-	public TileManager manager;
+	public GridManager manager;
+	private GameObject visualObject;
 
 	private Entity entity;
 
@@ -38,10 +39,13 @@ public class TileHandler : MonoBehaviour {
 
 	public void UpdateVisuals() {
 		// DELETE VISUAL OBJECT
+		Destroy(visualObject);
 
 		if (entity != null) {
 			// ADD A VISUAL OBJECT BASED ON 
-			// entity.GetPrefab()
+			const float Y_OFFSET = 1f;
+
+			Instantiate(entity.GetPrefab(), transform.position + Vector3.up * Y_OFFSET, Quaternion.identity);
 		}
 	}
 

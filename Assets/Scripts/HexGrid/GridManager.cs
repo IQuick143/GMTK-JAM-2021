@@ -5,7 +5,10 @@ using UnityEngine;
 public class GridManager : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject tilePrefab = null;
+	private GameObject tilePrefab1;
+		
+	[SerializeField]
+	private GameObject tilePrefab2;
 
 	public HexArray<TileHandler> tiles {get; private set;}
 
@@ -16,7 +19,13 @@ public class GridManager : MonoBehaviour {
 		tiles = new HexArray<TileHandler>(size_x, size_y);
 		for (int x = 0; x < size_x; x++) {
 			for (int y = 0; y < size_y; y++) {
-				tiles[x,y] = Instantiate(tilePrefab).GetComponent<TileHandler>();
+
+				var prefab = tilePrefab2;
+
+				if (x % 2 == y % 2)
+					prefab = tilePrefab1;
+
+				tiles[x,y] = Instantiate(prefab).GetComponent<TileHandler>();
 				tiles[x,y].manager = this;
 				tiles[x,y].SetCoordinate(x, y);
 			}
