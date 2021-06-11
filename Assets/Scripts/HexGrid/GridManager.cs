@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileManager : MonoBehaviour {
+public class GridManager : MonoBehaviour {
+
 	[SerializeField]
 	private GameObject tilePrefab = null;
+
 	public HexArray<TileHandler> tiles {get; private set;}
 
 	// Start is called before the first frame update
