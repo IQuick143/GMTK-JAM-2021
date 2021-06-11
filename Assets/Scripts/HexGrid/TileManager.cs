@@ -5,12 +5,18 @@ using UnityEngine;
 public class TileManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject tilePrefab = null;
+	public HexArray<TileHandler> tiles {get; private set;}
 
 	// Start is called before the first frame update
 	void Start() {
-		for (int x = 0; x < 100; x++) {
-			for (int y = 0; y < 100; y++) {
-				Instantiate(tilePrefab).GetComponent<TileHandler>().SetCoordinate(x, y);
+		int size_x = 100;
+		int size_y = 100;
+		tiles = new HexArray<TileHandler>(size_x, size_y);
+		for (int x = 0; x < size_x; x++) {
+			for (int y = 0; y < size_y; y++) {
+				tiles[x,y] = Instantiate(tilePrefab).GetComponent<TileHandler>();
+				tiles[x,y].manager = this;
+				tiles[x,y].SetCoordinate(x, y);
 			}
 		}
 	}

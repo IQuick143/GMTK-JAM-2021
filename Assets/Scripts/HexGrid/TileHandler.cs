@@ -8,6 +8,8 @@ public class TileHandler : MonoBehaviour {
 	private float radius = 1/sqrt_3;
 	private int x=0,y=0;
 
+	public TileManager manager;
+
 	// Start is called before the first frame update
 	void Start() {
 		
@@ -21,6 +23,10 @@ public class TileHandler : MonoBehaviour {
 		int half_offset = this.x % 2;
 
 		this.transform.position = new Vector3(this.x * 1.5f * radius, 0f, (this.y - half_offset / 2f) * radius * sqrt_3);
+	}
+
+	public IEnumerable<TileHandler> GetNeighbours() {
+		return this.manager.tiles.GetNeighbours(this.x, this.y);
 	}
 
 	// Update is called once per frame
