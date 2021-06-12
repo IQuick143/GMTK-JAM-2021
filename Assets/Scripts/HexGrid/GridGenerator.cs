@@ -15,10 +15,12 @@ public class GridGenerator : MonoBehaviour
 {
 	private SysRandom RNG;
 
+	[Header("Mountain Generation")]
 	[Range(0f, 1f)]
 	public float MountainAmplitudeCutoff = 0.75f;
 	public float MountainNoiseScale = 5f;
 
+	[Header("River Generation")]
 	public int MinRiverCount = 2;
 	public int MaxRiverCount = 2;
 
@@ -29,6 +31,10 @@ public class GridGenerator : MonoBehaviour
 	public int RiverMaxRotationAngle = 2;
 	public int RiverMinRotationFrequency = 3;
 	public int RiverMaxRotationFrequency = 8;
+
+	[Header("Resource Generation")]
+	public int ResourceCount = 10;
+
 
 	[Header("Seeding")]
 	public int Seed;
@@ -124,5 +130,31 @@ public class GridGenerator : MonoBehaviour
 					tiles[x, y].SetObject(new Mountain());
 			}
 		}
+
+		/*
+		 * Generate resources
+		 */
+
+		for (int i = 0; i < ResourceCount; i++)
+			GenerateRandomResource(manager);
+	}
+
+	/// <summary>
+	/// Generates a random resource in a random location
+	/// </summary>
+	/// <param name="manager"></param>
+	private void GenerateRandomResource(GridManager manager)
+	{
+		//TODO: Make sure this is balanced
+
+		int x, y;
+
+		do
+		{
+			x = RNG.Next(manager.tiles.Width);
+			y = RNG.Next(manager.tiles.Height);
+		} while (!manager.tiles[x, y].IsEmpty);
+
+		manager.tiles[x, y].SetObject(new Resource());
 	}
 }

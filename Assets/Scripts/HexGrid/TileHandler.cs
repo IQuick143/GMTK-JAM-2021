@@ -95,7 +95,11 @@ public class TileHandler : MonoBehaviour {
 	public void OnLMB() {
 		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
 		if (IsEmpty) {
-			SetObject(new Connectable(new HashSet<Item>() {Item.Unobtanium}, new HashSet<Item>() {Item.Unobtanium}, GameManager.prefab.FactoryPrefab));
+			SetObject(new Connectable(
+				inputs: new HashSet<Item>() {Item.RawResource}, 
+				outputs: new HashSet<Item>() {Item.FactoryProduct}, 
+				prefab: GameManager.prefab.FactoryPrefab)
+			);
 		} else if (this.entity.GetType() == typeof(Connectable)) {
 			this.manager.BeginConnecting(this.x, this.y);
 		}

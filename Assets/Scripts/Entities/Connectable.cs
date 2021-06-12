@@ -43,6 +43,6 @@ public class Connectable : Entity {
 }
 
 public enum Item {
-
-	Unobtanium
+	RawResource,
+	FactoryProduct
 }

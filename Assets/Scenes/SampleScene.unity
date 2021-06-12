@@ -183,13 +183,14 @@ MonoBehaviour:
   MountainAmplitudeCutoff: 0.7
   MountainNoiseScale: 15
   MinRiverCount: 2
-  MaxRiverCount: 2
-  MinRiverLength: 8
-  MaxRiverLength: 20
-  RiverMaxRotationAngle: 2
-  RiverMinRotationFrequency: 3
-  RiverMaxRotationFrequency: 8
-  Seed: 0
+  MaxRiverCount: 8
+  MinRiverLength: 15
+  MaxRiverLength: 50
+  RiverMaxRotationAngle: 1
+  RiverMinRotationFrequency: 5
+  RiverMaxRotationFrequency: 10
+  ResourceCount: 10
+  Seed: 621559997
   UseRandomSeed: 1
 --- !u!1 &705507993
 GameObject:
@@ -452,8 +453,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MountainEntityPrefab: {fileID: 7120782686775776249, guid: aaf137f4a3f5946409b5799aa802b330, type: 3}
+  RiverEntityPrefab: {fileID: 877173143585145346, guid: 39986ec7b97752f498108cf7fa25a736, type: 3}
   FactoryPrefab: {fileID: 7120782686775776249, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+  ResourcePrefab: {fileID: 7882530301536801990, guid: 24eba6221157bb34799585ee94471523, type: 3}
   WirePrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
   WirePreviewPrefab: {fileID: 6325887124244019969, guid: 74a905ad18524c0499fbf1bf6117e526, type: 3}
   WireGhostPrefab: {fileID: 6325887124244019969, guid: 74a905ad18524c0499fbf1bf6117e526, type: 3}
-  RiverEntityPrefab: {fileID: 877173143585145346, guid: 39986ec7b97752f498108cf7fa25a736, type: 3}
