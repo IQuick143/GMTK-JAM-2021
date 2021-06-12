@@ -14,10 +14,11 @@ using UnityEngine.Assertions;
 /// </summary>
 public class GameManager : MonoBehaviour {
 	public static GameManager Instance { get; private set; }
-
 	public static InputManager input { get; private set; }
 	public static PrefabManager prefab { get; private set; }
 	public static MenuManager menu { get; private set; }
+
+	public int Currency;
 
 	void Awake() {
 		if (Instance == null) Instance = this;

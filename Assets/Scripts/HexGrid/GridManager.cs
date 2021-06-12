@@ -6,7 +6,9 @@ public class GridManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject tilePrefab;
 
-	public HexArray<TileHandler> tiles {get; private set;}
+	public HexArray<TileHandler> tiles { get; private set; }
+	public Connectable marked { get; set; }
+
 	private float sqrt_3 = Mathf.Sqrt(3);
 	private float radius = 1/Mathf.Sqrt(3);
 
@@ -32,6 +34,8 @@ public class GridManager : MonoBehaviour {
 				tiles[x,y].transform.position = GetPositionFromCoordinate(new Vector2Int(x,y));
 			}
 		}
+
+		InvokeRepeating(nameof(SellToMarked), 1f, 1f);
 	}
 
 	void Update() {
@@ -220,5 +224,17 @@ public class GridManager : MonoBehaviour {
 		}
 
 		return new Vector3Int(rx, ry, rz);
+	}
+
+	private void SellToMarked()
+	{
+		//If marked is unset, abort
+		if (marked == null)
+			return;
+
+		foreach (var i in marked.connections)
+			GameManager.Instance.Currency += i.Stream.WorthPerSecond;
+
+		Debug.Log("$" + GameManager.Instance.Currency);
 	}
 }
