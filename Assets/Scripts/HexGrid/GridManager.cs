@@ -36,7 +36,6 @@ public class GridManager : MonoBehaviour {
 		if (old_mouseover != this.mouseoverCoordinates) {
 			if (this.tiles.IsInBounds(old_mouseover)) this.tiles[old_mouseover].hover = false;
 			if (this.tiles.IsInBounds(this.mouseoverCoordinates)) this.tiles[this.mouseoverCoordinates].hover = true;
-			Debug.Log(this.mouseoverCoordinates);
 		}
 	}
 
