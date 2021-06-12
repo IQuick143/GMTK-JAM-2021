@@ -30,8 +30,8 @@ public class Connectable : Entity {
 		if (!isBeingDeleted) connections.Remove(con);
 	}
 
-	public override GameObject GetPrefab() {
-		return prefab;
+	public override GameObject CreateVisualObject() {
+		return UnityEngine.GameObject.Instantiate(prefab);
 	}
 
 	public override void Delete() {

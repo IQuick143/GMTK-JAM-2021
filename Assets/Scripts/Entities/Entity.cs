@@ -9,6 +9,6 @@ using UnityEngine;
 /// Anything that can be placed on a tile
 /// </summary>
 public abstract class Entity {
-	public abstract GameObject GetPrefab();
+	public abstract GameObject CreateVisualObject();
 	public abstract void Delete();
 }

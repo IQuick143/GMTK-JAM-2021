@@ -15,7 +15,7 @@ public class GridManager : MonoBehaviour {
 	private bool connecting = false;
 	private List<Vector2Int> connectionPoints = new List<Vector2Int>();
 	private List<GameObject> connectionPreview = new List<GameObject>();
-	private GameObject connectionHeadGhost;
+	private GhostPreview connectionHeadGhost;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -75,7 +75,11 @@ public class GridManager : MonoBehaviour {
 					var start_factory = this.tiles[connectionPoints[0]].entity as Connectable;
 					var end_factory = this.tiles[closest].entity as Connectable;
 					canConnect = canPlace = start_factory.CanConnect(end_factory);
+					// Prevent direct connections
+					canPlace &= this.connectionPoints.Count > 1;
 				}
+
+				connectionHeadGhost.valid = canPlace;
 
 				if (canPlace && Input.GetMouseButtonDown(0)) {
 					this.connectionPoints.Add(closest);
@@ -98,7 +102,7 @@ public class GridManager : MonoBehaviour {
 	public void BeginConnecting(int x, int y) {
 		this.connecting = true;
 
-		connectionHeadGhost = Instantiate(GameManager.prefab.WireGhostPrefab);
+		connectionHeadGhost = Instantiate(GameManager.prefab.WireGhostPrefab).GetComponent<GhostPreview>();
 		connectionPoints.Clear();
 		connectionPoints.Add(new Vector2Int(x,y));
 	}
@@ -109,7 +113,7 @@ public class GridManager : MonoBehaviour {
 		foreach (var preview_object in connectionPreview) {
 			Destroy(preview_object);
 		}
-		Destroy(connectionHeadGhost);
+		Destroy(connectionHeadGhost.gameObject);
 		connectionPoints.Clear();
 		connectionPreview.Clear();
 	}
@@ -125,12 +129,12 @@ public class GridManager : MonoBehaviour {
 		Connectable A = this.tiles[connectionPoints[0]].entity as Connectable;
 		Connectable B = this.tiles[connectionPoints[connectionPoints.Count - 1]].entity as Connectable;
 
-		new Connection(connectionPoints, connectionTiles, A, B);
+		new Connection(connectionPoints, connectionTiles, this.tiles[connectionPoints[0]].transform.position, A, B);
 
 		foreach (var preview_object in connectionPreview) {
 			Destroy(preview_object);
 		}
-		Destroy(connectionHeadGhost);
+		Destroy(connectionHeadGhost.gameObject);
 		connectionPoints.Clear();
 		connectionPreview.Clear();
 	}
@@ -183,6 +187,10 @@ public class GridManager : MonoBehaviour {
 	public Vector3 GetPositionFromCoordinate(Vector2Int coordinate) {
 		int half_offset = coordinate.y % 2;
 		return new Vector3(coordinate.y * 1.5f * radius, 0f, (coordinate.x - half_offset / 2f) * radius * sqrt_3);
+	}
+
+	public static Vector2Int offset_to_axial(Vector2Int offset) {
+		return new Vector2Int(offset.x - (offset.y + (offset.y&1)) / 2, offset.y);
 	}
 
 	public static Vector3Int cube_coordinate_hex_round(Vector3 cube_coordinate) {

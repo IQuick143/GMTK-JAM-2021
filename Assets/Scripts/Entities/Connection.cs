@@ -7,16 +7,56 @@ public class Connection {
 	private Connectable B;
 	private List<TileHandler> wires;
 	private bool disconnecting = false;
+	private GameObject startingConnection;
 
-	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Connectable A, Connectable B) {
+	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Vector3 A_coordinate, Connectable A, Connectable B) {
 		this.A = A;
 		this.B = B;
 		this.wires = wireTiles;
 
 		for (int i = 0; i < wireTiles.Count; i++) {
-			Wire wire = new Wire(this);
+			var offset = GridManager.offset_to_axial(wireCoordinates[i+2]) - GridManager.offset_to_axial(wireCoordinates[i+1]);
+			HexDirection dir = HexDirection.Right;
+			if (offset.x == 0 && offset.y == -1) {
+				dir = HexDirection.UpLeft;
+			} else if (offset.x == 0 && offset.y == 1) {
+				dir = HexDirection.DownRight;
+			} else if (offset.x == 1 && offset.y == -1) {
+				dir = HexDirection.UpRight;
+			} else if (offset.x == 1 && offset.y == 0) {
+				dir = HexDirection.Right;
+			} else if (offset.x == -1 && offset.y == 1) {
+				dir = HexDirection.DownLeft;
+			} else if (offset.x == -1 && offset.y == 0) {
+				dir = HexDirection.Left;
+			}
+
+			Wire wire = new Wire(this, dir);
 			this.wires[i].SetObject(wire);
 		}
+
+		var first_offset = GridManager.offset_to_axial(wireCoordinates[1]) - GridManager.offset_to_axial(wireCoordinates[0]);
+
+		HexDirection first_dir = HexDirection.Right;
+		if (first_offset.x == 0 && first_offset.y == -1) {
+			first_dir = HexDirection.UpLeft;
+		} else if (first_offset.x == 0 && first_offset.y == 1) {
+			first_dir = HexDirection.DownRight;
+		} else if (first_offset.x == 1 && first_offset.y == -1) {
+			first_dir = HexDirection.UpRight;
+		} else if (first_offset.x == 1 && first_offset.y == 0) {
+			first_dir = HexDirection.Right;
+		} else if (first_offset.x == -1 && first_offset.y == 1) {
+			first_dir = HexDirection.DownLeft;
+		} else if (first_offset.x == -1 && first_offset.y == 0) {
+			first_dir = HexDirection.Left;
+		}
+
+		startingConnection = new GameObject();
+		var fake_wire = GameObject.Instantiate(GameManager.prefab.WirePrefab);
+		fake_wire.transform.SetParent(startingConnection.transform);
+		startingConnection.transform.rotation = Quaternion.AngleAxis(first_dir.ToDegrees(), Vector3.up);
+		startingConnection.transform.position = A_coordinate;
 
 		A.Connect(this);
 		B.Connect(this);
@@ -38,6 +78,7 @@ public class Connection {
 		foreach (var wire_tile in this.wires) {
 			wire_tile.DeleteObject();
 		}
+		GameObject.Destroy(startingConnection);
 	}
 
 

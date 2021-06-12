@@ -8,9 +8,9 @@ using UnityEngine;
 
 public class RiverBase : Entity
 {
-	public override GameObject GetPrefab()
+	public override GameObject CreateVisualObject()
 	{
-		return GameManager.prefab.RiverEntityPrefab;
+		return GameObject.Instantiate(GameManager.prefab.RiverEntityPrefab);
 	}
 
 	public override void Delete()

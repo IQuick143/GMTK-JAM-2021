@@ -74,7 +74,8 @@ public class TileHandler : MonoBehaviour {
 
 		if (entity != null) {
 			const float Y_OFFSET = 0.1f;
-			this.visualObject = Instantiate(entity.GetPrefab(), transform.position + Vector3.up * Y_OFFSET, Quaternion.identity);
+			this.visualObject = entity.CreateVisualObject();
+			this.visualObject.transform.position = transform.position + Vector3.up * Y_OFFSET;
 			this.visualObject.transform.SetParent(this.transform);
 		}
 	}

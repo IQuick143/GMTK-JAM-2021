@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public class Mountain : Entity {
-	public override GameObject GetPrefab() {
-		return GameManager.prefab.MountainEntityPrefab;
+	public override GameObject CreateVisualObject() {
+		return GameObject.Instantiate(GameManager.prefab.MountainEntityPrefab);
 	}
 
 	public override void Delete() {

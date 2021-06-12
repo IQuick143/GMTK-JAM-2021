@@ -25,7 +25,7 @@ public static class HexDirectionExtensions
 			return RotateCCW(direction, -amount);
 
 		return (HexDirection)(((int)direction + amount) % 6);
-	} 
+	}
 
 	public static HexDirection RotateCCW(this HexDirection direction, int amount = 1)
 	{
@@ -33,5 +33,22 @@ public static class HexDirectionExtensions
 			return RotateCW(direction, -amount);
 
 		return (HexDirection)(((int)direction + 5 * amount) % 6);
+	}
+
+	///<summary>
+	///Returns the CW rotation from the Z+ axis
+	///</summary>
+	public static float ToDegrees(this HexDirection direction)
+	{
+		switch (direction) {
+			case HexDirection.UpLeft: return 240f;
+			case HexDirection.UpRight: return 300f;
+			case HexDirection.Right: return 0f;
+			case HexDirection.DownRight: return 60f;
+			case HexDirection.DownLeft: return 120f;
+			case HexDirection.Left: return 180f;
+		}
+		// Should not happen but compiler is angwy
+		return 0f;
 	}
 }
