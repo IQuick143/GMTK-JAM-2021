@@ -68,12 +68,12 @@ public class TileHandler : MonoBehaviour {
 	}
 
 	public void UpdateVisuals() {
-		Destroy(visualObject);
+		if (visualObject != null) Destroy(visualObject);
 
 		if (entity != null) {
 			const float Y_OFFSET = 1f;
-
-			Instantiate(entity.GetPrefab(), transform.position + Vector3.up * Y_OFFSET, Quaternion.identity);
+			this.visualObject = Instantiate(entity.GetPrefab(), transform.position + Vector3.up * Y_OFFSET, Quaternion.identity);
+			this.visualObject.transform.SetParent(this.transform);
 		}
 	}
 
