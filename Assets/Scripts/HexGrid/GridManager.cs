@@ -68,9 +68,21 @@ public class GridManager : MonoBehaviour {
 				connectionHeadGhost.transform.position = midpoint;
 				connectionHeadGhost.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-				if (Input.GetMouseButtonDown(0)) {
+				bool canPlace = false;
+				bool canConnect = false;
+				if (this.tiles[closest].entity == null) canPlace = !this.connectionPoints.Contains(closest);
+				else if (this.tiles[closest].entity.GetType() == typeof(Connectable)) {
+					var start_factory = this.tiles[connectionPoints[0]].entity as Connectable;
+					var end_factory = this.tiles[closest].entity as Connectable;
+					canConnect = canPlace = start_factory.CanConnect(end_factory);
+				}
+
+				if (canPlace && Input.GetMouseButtonDown(0)) {
 					this.connectionPoints.Add(closest);
 					this.connectionPreview.Add(Instantiate(GameManager.prefab.WirePreviewPrefab, midpoint, Quaternion.LookRotation(direction, Vector3.up)));
+					if (canConnect) {
+						FinishConnecting();
+					}
 				}
 			}
 		} else if (this.tiles.IsInBounds(this.mouseoverCoordinates)) {
@@ -97,6 +109,7 @@ public class GridManager : MonoBehaviour {
 		foreach (var preview_object in connectionPreview) {
 			Destroy(preview_object);
 		}
+		Destroy(connectionHeadGhost);
 		connectionPoints.Clear();
 		connectionPreview.Clear();
 	}
@@ -106,7 +119,7 @@ public class GridManager : MonoBehaviour {
 
 		var connectionTiles = new List<TileHandler>(connectionPoints.Count - 2);
 		for (int i = 1; i < connectionPoints.Count - 1; i++) {
-			connectionTiles[i] = this.tiles[connectionPoints[i]];
+			connectionTiles.Add(this.tiles[connectionPoints[i]]);
 		}
 
 		Connectable A = this.tiles[connectionPoints[0]].entity as Connectable;
@@ -117,6 +130,7 @@ public class GridManager : MonoBehaviour {
 		foreach (var preview_object in connectionPreview) {
 			Destroy(preview_object);
 		}
+		Destroy(connectionHeadGhost);
 		connectionPoints.Clear();
 		connectionPreview.Clear();
 	}
@@ -162,6 +176,10 @@ public class GridManager : MonoBehaviour {
 		return GetCoordinateFromXZ(new Vector2(position.x, position.z));
 	}
 
+
+	///<summary>
+	///	Converts an offset coordinate to the center of that tile in the XZ
+	///</summary>
 	public Vector3 GetPositionFromCoordinate(Vector2Int coordinate) {
 		int half_offset = coordinate.y % 2;
 		return new Vector3(coordinate.y * 1.5f * radius, 0f, (coordinate.x - half_offset / 2f) * radius * sqrt_3);

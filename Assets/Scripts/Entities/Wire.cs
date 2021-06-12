@@ -10,7 +10,7 @@ public class Wire : Entity {
 	}
 
 	public override GameObject GetPrefab() {
-		return GameManager.prefab.MountainEntityPrefab;
+		return GameManager.prefab.WirePrefab;
 	}
 
 	public override void Delete() {

@@ -6,9 +6,11 @@ public class Connectable : Entity {
 	public HashSet<Item> inputs {get; private set;}
 	public HashSet<Item> outputs {get; private set;}
 
-	public List<Connection> connections;
+	public List<Connection> connections = new List<Connection>();
 
 	private GameObject prefab;
+
+	private bool isBeingDeleted = false;
 
 	public Connectable(HashSet<Item> inputs, HashSet<Item> outputs, GameObject prefab) {
 		this.inputs = inputs;
@@ -21,11 +23,11 @@ public class Connectable : Entity {
 	}
 	
 	public void Connect(Connection con) {
-		
+		connections.Add(con);
 	}
 
 	public void Disconnect(Connection con) {
-		
+		if (!isBeingDeleted) connections.Remove(con);
 	}
 
 	public override GameObject GetPrefab() {
@@ -33,6 +35,7 @@ public class Connectable : Entity {
 	}
 
 	public override void Delete() {
+		isBeingDeleted = true;
 		foreach (var connection in connections) {
 			connection.Disconnect();
 		}
@@ -41,4 +44,5 @@ public class Connectable : Entity {
 
 public enum Item {
 
+	Unobtanium
 }
