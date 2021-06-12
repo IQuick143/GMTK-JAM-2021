@@ -10,6 +10,7 @@ public class PrefabManager : MonoBehaviour {
 	[Header("Dynamic objects")]
 	public GameObject FactoryPrefab;
 	public GameObject ResourcePrefab;
+	public GameObject MarkedPrefab;
 
 	[Header("Wire objects")]
 	public GameObject WirePrefab;

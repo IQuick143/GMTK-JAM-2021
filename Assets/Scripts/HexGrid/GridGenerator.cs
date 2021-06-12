@@ -137,6 +137,28 @@ public class GridGenerator : MonoBehaviour
 
 		for (int i = 0; i < ResourceCount; i++)
 			GenerateRandomResource(manager);
+
+		/*
+		 * Generate marked
+		 */
+
+		{
+			int x, y;
+
+			do
+			{
+				x = RNG.Next(tiles.Width);
+				y = RNG.Next(tiles.Height);
+			} while (!tiles[x, y].IsEmpty);
+
+			tiles[x, y].SetObject(new Connectable(
+				inputs: new HashSet<Item>() { Item.FactoryProduct },
+				outputs: new HashSet<Item>(),
+				prefab: GameManager.prefab.MarkedPrefab
+			));
+		}
+
+		
 	}
 
 	/// <summary>
