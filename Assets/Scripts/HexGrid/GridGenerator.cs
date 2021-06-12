@@ -155,6 +155,10 @@ public class GridGenerator : MonoBehaviour
 			y = RNG.Next(manager.tiles.Height);
 		} while (!manager.tiles[x, y].IsEmpty);
 
-		manager.tiles[x, y].SetObject(new Resource());
+		manager.tiles[x, y].SetObject(new Connectable(
+			inputs: new HashSet<Item>(),
+			outputs: new HashSet<Item>() { Item.RawResource },
+			prefab: GameManager.prefab.ResourcePrefab
+		));
 	}
 }
