@@ -64,28 +64,30 @@ public class HexArray<T> : IEnumerable<T>
 	{
 		var output = new List<Vector2Int>();
 
+		//Left
 		output.Add(new Vector2Int(x - 1, y));
+
+		//Right
 		output.Add(new Vector2Int(x + 1, y));
 
+		//Self
 		if (includeSelf)
 			output.Add(new Vector2Int(x, y));
 
-		if (y % 2 == 0)
-		{
-			output.Add(new Vector2Int(x, y - 1));
-			output.Add(new Vector2Int(x + 1, y - 1));
+		int xOffset = 1 - (y % 2);
 
-			output.Add(new Vector2Int(x, y + 1));
-			output.Add(new Vector2Int(x + 1, y + 1));
-		}
-		else
-		{
-			output.Add(new Vector2Int(x - 1, y - 1));
-			output.Add(new Vector2Int(x, y - 1));
+		//Top left
+		output.Add(new Vector2Int(x - 1 + xOffset, y - 1));
 
-			output.Add(new Vector2Int(x - 1, y + 1));
-			output.Add(new Vector2Int(x, y + 1));
-		}
+		//Top right
+		output.Add(new Vector2Int(x + xOffset, y - 1));
+
+
+		//Bottom left
+		output.Add(new Vector2Int(x - 1 + xOffset, y + 1));
+
+		//Bottom right
+		output.Add(new Vector2Int(x + xOffset, y + 1));
 
 		if (includeInvalid)
 			return output;
