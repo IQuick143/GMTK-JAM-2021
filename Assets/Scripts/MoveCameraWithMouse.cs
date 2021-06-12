@@ -34,6 +34,14 @@ public class MoveCameraWithMouse : MonoBehaviour
 
 			transform.position += (_clickedCameraPosition + delta_cam - transform.position) * lerpConstant;
 		}
+
+		float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
+
+		transform.position += transform.forward * scroll * 5f;
+
+		//Clamp position
+		transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 1f, 20f), transform.position.z);
+
 	}
 
 	private Vector3 Rationalize(Vector2 vec) {
