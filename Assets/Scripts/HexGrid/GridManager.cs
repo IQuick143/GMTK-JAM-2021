@@ -138,6 +138,8 @@ public class GridManager : MonoBehaviour {
 		// THIS IS A SACRED PLACE
 		// A FOREST OF WRONG LABELS AND SQUIGGLY PATHS
 		// IT LEADS TO THE CORRECT DESINATION SO DON'T """FIX""" IT OKAY
+		// nvm it was wrong but I fixed it
+		// maybe
 
 		//Convert to axial coordinates
 		position /= this.radius;
@@ -150,7 +152,7 @@ public class GridManager : MonoBehaviour {
 		//Convert cube to offset
 		var col = cube.x;
 		var row = cube.z + cube.x/2 + (cube.x % 2);
-		return new Vector2Int(col,row);
+		return new Vector2Int(row, col);
 	}
 
 	///<summary>
@@ -161,8 +163,8 @@ public class GridManager : MonoBehaviour {
 	}
 
 	public Vector3 GetPositionFromCoordinate(Vector2Int coordinate) {
-		int half_offset = coordinate.x % 2;
-		return new Vector3(coordinate.x * 1.5f * radius, 0f, (coordinate.y - half_offset / 2f) * radius * sqrt_3);
+		int half_offset = coordinate.y % 2;
+		return new Vector3(coordinate.y * 1.5f * radius, 0f, (coordinate.x - half_offset / 2f) * radius * sqrt_3);
 	}
 
 	public static Vector3Int cube_coordinate_hex_round(Vector3 cube_coordinate) {
