@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Wire : Entity {
-	public Connection connection;
+	private Connection connection;
+
+	public Wire(Connection connection) {
+		this.connection = connection;
+	}
 
 	public override GameObject GetPrefab() {
-		throw new System.NotImplementedException();
+		return GameManager.prefab.MountainEntityPrefab;
+	}
+
+	public override void Delete() {
+		connection.Disconnect();
 	}
 }

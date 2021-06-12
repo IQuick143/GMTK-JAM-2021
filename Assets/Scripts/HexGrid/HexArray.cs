@@ -55,6 +55,24 @@ public class HexArray<T> : IEnumerable<T>
 	}
 
 	/// <summary>
+	/// Gets or sets a tile
+	/// </summary>
+	/// <param name="coordinate"></param>
+	/// <param name="y"></param>
+	/// <returns></returns>
+	public T this[Vector2Int coordinate]
+	{
+		get
+		{
+			return _internal[coordinate.x, coordinate.y];
+		}
+		set
+		{
+			_internal[coordinate.x, coordinate.y] = value;
+		}
+	}
+
+	/// <summary>
 	/// Gets the coordinates that border the provided tile
 	/// </summary>
 	/// <param name="x"></param>
@@ -176,6 +194,16 @@ public class HexArray<T> : IEnumerable<T>
 	public bool IsInBounds(int x, int y) 
 	{
 		return x > 0 && y > 0 && x < Width && y < Height;
+	}
+
+	/// <summary>
+	/// Gets whether the provided position is in-bounds of the grid
+	/// </summary>
+	/// <param name="coordinate"></param>
+	/// <returns></returns>
+	public bool IsInBounds(Vector2Int coordinate) 
+	{
+		return IsInBounds(coordinate.x, coordinate.y);
 	}
 
 	/// <summary>

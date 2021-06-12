@@ -12,4 +12,9 @@ public class RiverBase : Entity
 	{
 		return GameManager.prefab.RiverEntityPrefab;
 	}
+
+	public override void Delete()
+	{
+		
+	}
 }
