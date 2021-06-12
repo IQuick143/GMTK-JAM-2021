@@ -45,7 +45,8 @@ public class TileHandler : MonoBehaviour {
 		this.y = y;
 		this.radius = radius;
 		if (this.y % 2 == 1) {
-			this.groundRenderer.material.color = Color.gray;
+			Color c = this.groundRenderer.material.color;
+			this.groundRenderer.material.color = new Color(c.r / 2, c.g / 2, c.b / 2);
 		}
 	}
 
