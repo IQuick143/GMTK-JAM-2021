@@ -8,29 +8,47 @@ using UnityEngine;
 
 public class MoveCameraWithMouse : MonoBehaviour
 {
-	private Vector3 _lastMousePosition;
+	private Vector3 _clickedWorldPositionRelative;
+	private Vector3 _clickedCameraPosition;
+	private Camera _cam;
 
-	public float HorizontalSpeed = 0.25f;
-	public float VerticalSpeed = 0.25f;
+	public float lerpConstant = 0.75f;
+
+	private void Awake()
+	{
+		_cam = Camera.main;
+	}
 
 	private void Update()
 	{
 		//TODO: Restrict to bounds of map
 
 		if (Input.GetMouseButtonDown(0))
-			_lastMousePosition = Input.mousePosition;
-
+		{
+			_clickedWorldPositionRelative = Rationalize(CalculateXZIntersectrelative(Input.mousePosition));
+			_clickedCameraPosition = transform.position;
+		}
 		else if (Input.GetMouseButton(0))
 		{
-			var newMousePosition = Input.mousePosition;
+			var delta_cam = _clickedWorldPositionRelative - Rationalize(CalculateXZIntersectrelative(Input.mousePosition));
 
-			transform.position += new Vector3(
-				x: (_lastMousePosition.x - newMousePosition.x) * HorizontalSpeed, 
-				y: 0f, 
-				z: (_lastMousePosition.y - newMousePosition.y) * VerticalSpeed
-			);
-
-			_lastMousePosition = newMousePosition;
+			transform.position += (_clickedCameraPosition + delta_cam - transform.position) * lerpConstant;
 		}
+	}
+
+	private Vector3 Rationalize(Vector2 vec) {
+		return new Vector3(Mathf.Clamp(vec.x, -100, 100), 0, Mathf.Clamp(vec.y, -100, 100));
+	}
+
+	private Vector3 CalculateXZIntersectrelative(Vector3 mousepos) {
+		var ray = this._cam.ScreenPointToRay(Input.mousePosition);
+		// Calculate where the ray hits y = 0
+		if (ray.direction.y >= 0f) {
+			return Vector2.positiveInfinity;
+		}
+
+		float distance = -ray.origin.y / ray.direction.y;
+
+		return new Vector2(ray.direction.x, ray.direction.z) * distance;
 	}
 }
