@@ -40,6 +40,7 @@ public class TileHandler : MonoBehaviour {
 			}
 		}
 	}
+	private bool showing_tooltip = false;
 
 	// Makes the TileHandler calculate the world coordinates to place itself at
 	public void SetGeometry(int x, int y, float radius) {
@@ -110,6 +111,16 @@ public class TileHandler : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		
+		if (_hover) {
+			if (!showing_tooltip &&this.entity != null && this.entity.GetType() == typeof(Connectable)) {
+				showing_tooltip = true;
+				GameManager.menu.ShowConnectableTooltip((Connectable) this.entity);
+			}
+		} else {
+			if (showing_tooltip) {
+				showing_tooltip = false;
+				GameManager.menu.HideTooltip();
+			}
+		}
 	}
 }

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
 	public static InputManager input { get; private set; }
 	public static PrefabManager prefab { get; private set; }
+	public static MenuManager menu { get; private set; }
 
 	void Awake() {
 		if (Instance == null) Instance = this;
@@ -24,10 +25,12 @@ public class GameManager : MonoBehaviour {
 
 		input = this.GetComponent<InputManager>();
 		prefab = this.GetComponent<PrefabManager>();
+		menu = this.GetComponent<MenuManager>();
 		
 		#if UNITY_EDITOR
 		Assert.IsNotNull(GameManager.prefab);
 		Assert.IsNotNull(GameManager.input);
+		Assert.IsNotNull(GameManager.menu);
 		#endif
 	}
 }
