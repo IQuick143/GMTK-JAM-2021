@@ -153,8 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bf77349ff62cb4f85047d4e6cdfafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab1: {fileID: 877173143585145346, guid: da84867bed36f9443950b9fb0cb32b63, type: 3}
-  tilePrefab2: {fileID: 877173143585145346, guid: 5d42a5ba778e14641ac03d8175c38a96, type: 3}
+  tilePrefab: {fileID: 877173143585145346, guid: da84867bed36f9443950b9fb0cb32b63, type: 3}
 --- !u!4 &65643108
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +182,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MountainAmplitudeCutoff: 0.7
   MountainNoiseScale: 15
-  Seed: 0
+  MinRiverCount: 2
+  MaxRiverCount: 8
+  MinRiverLength: 15
+  MaxRiverLength: 50
+  RiverMaxRotationAngle: 1
+  RiverMinRotationFrequency: 5
+  RiverMaxRotationFrequency: 10
+  ResourceCount: 10
+  Seed: 621559997
   UseRandomSeed: 1
 --- !u!1 &705507993
 GameObject:
@@ -354,13 +361,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.37455738, y: -0, z: -0, w: 0.9272038}
+  m_LocalPosition: {x: 26.4, y: 16.3, z: 56.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.994, y: 0, z: 0}
 --- !u!1 &1747340431
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ada17711c678f479143c34000e7b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewcamera: {fileID: 0}
 --- !u!114 &1747340435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,3 +439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MountainEntityPrefab: {fileID: 7120782686775776249, guid: aaf137f4a3f5946409b5799aa802b330, type: 3}
+  RiverEntityPrefab: {fileID: 7120782686775776249, guid: d7da922a32b3fec4687b85245706eb9d, type: 3}
+  FactoryPrefab: {fileID: 8299197721005373074, guid: fb2ab662d77e7494d8e9b1e6492e6cb4, type: 3}
+  ResourcePrefab: {fileID: 0}
+  WirePrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  WirePreviewPrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  WireGhostPrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
