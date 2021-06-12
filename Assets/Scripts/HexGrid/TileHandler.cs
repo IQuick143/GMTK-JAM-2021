@@ -14,6 +14,8 @@ public class TileHandler : MonoBehaviour {
 	private Renderer groundRenderer;
 	private GameObject visualObject;
 
+	private Color originalColor;
+
 	public Entity entity {get; private set;}
 
 	public bool IsEmpty
@@ -81,11 +83,12 @@ public class TileHandler : MonoBehaviour {
 	}
 
 	public void OnMouseEnter() {
+		originalColor = this.groundRenderer.material.color;
 		this.groundRenderer.material.color = Color.red;
 	}
 
 	public void OnMouseExit() {
-		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
+		this.groundRenderer.material.color = originalColor;
 	}
 
 	public void OnLMB() {
