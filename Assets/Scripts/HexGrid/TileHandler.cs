@@ -76,9 +76,8 @@ public class TileHandler : MonoBehaviour {
 		if (visualObject != null) Destroy(visualObject);
 
 		if (entity != null) {
-			const float Y_OFFSET = 0.1f;
 			this.visualObject = entity.CreateVisualObject();
-			this.visualObject.transform.position = transform.position + Vector3.up * Y_OFFSET;
+			this.visualObject.transform.position = transform.position;
 			this.visualObject.transform.SetParent(this.transform);
 		}
 	}
