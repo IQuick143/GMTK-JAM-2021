@@ -59,6 +59,14 @@ public class TileHandler : MonoBehaviour {
 		this.UpdateVisuals();
 	}
 
+	public void DeleteObject() {
+		if (this.entity != null) {
+			entity.Delete();
+			this.entity = null;
+		}
+		UpdateVisuals();
+	}
+
 	public void UpdateVisuals() {
 		Destroy(visualObject);
 

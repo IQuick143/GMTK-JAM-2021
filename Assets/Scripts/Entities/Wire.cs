@@ -8,4 +8,8 @@ public class Wire : Entity {
 	public override GameObject GetPrefab() {
 		throw new System.NotImplementedException();
 	}
+
+	public override void Delete() {
+		connection.Disconnect();
+	}
 }

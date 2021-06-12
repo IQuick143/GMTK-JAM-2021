@@ -10,4 +10,5 @@ using UnityEngine;
 /// </summary>
 public abstract class Entity {
 	public abstract GameObject GetPrefab();
+	public abstract void Delete();
 }
