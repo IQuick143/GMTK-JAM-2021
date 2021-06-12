@@ -10,7 +10,9 @@ public class GridManager : MonoBehaviour {
 	private float sqrt_3 = Mathf.Sqrt(3);
 	private float radius = 1/Mathf.Sqrt(3);
 
+	private Vector2 lastMouseDownPosition;
 	private Vector2Int mouseoverCoordinates = new Vector2Int(-1,-1);
+	private float MOUSE_DRAG_THRESHOLD = 1f;
 
 	private bool connecting = false;
 	private List<Vector2Int> connectionPoints = new List<Vector2Int>();
@@ -43,6 +45,9 @@ public class GridManager : MonoBehaviour {
 			if (this.tiles.IsInBounds(old_mouseover)) this.tiles[old_mouseover].hover = false;
 			if (this.tiles.IsInBounds(this.mouseoverCoordinates)) this.tiles[this.mouseoverCoordinates].hover = true;
 		}
+
+		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+			lastMouseDownPosition = Input.mousePosition;
 
 		if (connecting) {
 			if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -90,10 +95,10 @@ public class GridManager : MonoBehaviour {
 				}
 			}
 		} else if (this.tiles.IsInBounds(this.mouseoverCoordinates)) {
-			if (Input.GetMouseButtonDown(0)) {
+			if (Input.GetMouseButtonUp(0) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD) {
 				 this.tiles[this.mouseoverCoordinates].OnLMB();
 			}
-			if (Input.GetMouseButtonDown(1)) {
+			if (Input.GetMouseButtonUp(1) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD) {
 				 this.tiles[this.mouseoverCoordinates].OnRMB();
 			}
 		}
