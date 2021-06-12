@@ -10,7 +10,7 @@ public class Connection {
 	private List<TileHandler> wires;
 	private bool disconnecting = false;
 	private GameObject startingConnection;
-	private Item Stream;
+	public Item Stream;
 
 	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Vector3 A_coordinate, Connectable A, Connectable B) {
 		this.A = A;
