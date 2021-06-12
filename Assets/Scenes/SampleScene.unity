@@ -189,6 +189,7 @@ MonoBehaviour:
   RiverMaxRotationAngle: 2
   RiverMinRotationFrequency: 3
   RiverMaxRotationFrequency: 8
+  ResourceCount: 10
   Seed: 0
   UseRandomSeed: 1
 --- !u!1 &705507993
@@ -388,6 +389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7628933905662652941, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
+      propertyPath: ResourcePrefab
+      value: 
+      objectReference: {fileID: 7882530301536801990, guid: 24eba6221157bb34799585ee94471523, type: 3}
     - target: {fileID: 7628933905662652943, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: m_RootOrder
       value: 3
