@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 public class Connectable : Entity {
@@ -20,6 +22,11 @@ public class Connectable : Entity {
 
 	public bool CanConnect(Connectable other) {
 		return this.inputs.Overlaps(other.outputs) || this.outputs.Overlaps(other.inputs);
+	}
+
+	public IEnumerable<Item> GetCompatiblePorts(Connectable other)
+	{
+		return inputs.Intersect(other.outputs).Concat(outputs.Intersect(other.outputs));
 	}
 	
 	public void Connect(Connection con) {

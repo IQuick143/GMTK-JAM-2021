@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 public class Connection {
@@ -8,11 +10,17 @@ public class Connection {
 	private List<TileHandler> wires;
 	private bool disconnecting = false;
 	private GameObject startingConnection;
+	private Item Stream;
 
 	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Vector3 A_coordinate, Connectable A, Connectable B) {
 		this.A = A;
 		this.B = B;
 		this.wires = wireTiles;
+		Stream = A.inputs
+			.Intersect(B.outputs)
+			.Concat(A.outputs
+				.Intersect(B.inputs)
+			).First();
 
 		for (int i = 0; i < wireTiles.Count; i++) {
 			var offset = GridManager.offset_to_axial(wireCoordinates[i+2]) - GridManager.offset_to_axial(wireCoordinates[i+1]);
