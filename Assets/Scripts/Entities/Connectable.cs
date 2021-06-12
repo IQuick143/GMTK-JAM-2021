@@ -8,6 +8,14 @@ public class Connectable : Entity {
 
 	public List<Connection> connections;
 
+	private GameObject prefab;
+
+	public Connectable(HashSet<Item> inputs, HashSet<Item> outputs, GameObject prefab) {
+		this.inputs = inputs;
+		this.outputs = outputs;
+		this.prefab = prefab;
+	}
+
 	public bool CanConnect(Connectable other) {
 		return this.inputs.Overlaps(other.outputs) || this.outputs.Overlaps(other.inputs);
 	}
@@ -21,14 +29,13 @@ public class Connectable : Entity {
 	}
 
 	public override GameObject GetPrefab() {
-		throw new System.NotImplementedException();
+		return prefab;
 	}
 
 	public override void Delete() {
 		foreach (var connection in connections) {
 			connection.Disconnect();
 		}
-		throw new System.NotImplementedException();
 	}
 }
 
