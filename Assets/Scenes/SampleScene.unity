@@ -153,8 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bf77349ff62cb4f85047d4e6cdfafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab1: {fileID: 877173143585145346, guid: da84867bed36f9443950b9fb0cb32b63, type: 3}
-  tilePrefab2: {fileID: 877173143585145346, guid: 5d42a5ba778e14641ac03d8175c38a96, type: 3}
+  tilePrefab: {fileID: 877173143585145346, guid: da84867bed36f9443950b9fb0cb32b63, type: 3}
 --- !u!4 &65643108
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +182,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MountainAmplitudeCutoff: 0.7
   MountainNoiseScale: 15
+  MinRiverCount: 2
+  MaxRiverCount: 2
+  MinRiverLength: 8
+  MaxRiverLength: 20
+  RiverMaxRotationAngle: 2
+  RiverMinRotationFrequency: 3
+  RiverMaxRotationFrequency: 8
   Seed: 0
   UseRandomSeed: 1
 --- !u!1 &705507993
@@ -289,6 +295,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -331,7 +338,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -354,13 +361,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 36.84, y: 4, z: 37.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9906e2006e61fe6429659737d16917f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HorizontalSpeed: 0.1
+  VerticalSpeed: 0.1
 --- !u!1 &1747340431
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747340431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.809493, y: -2.6723232, z: 10.474471}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -418,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ada17711c678f479143c34000e7b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewcamera: {fileID: 0}
 --- !u!114 &1747340435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,3 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MountainEntityPrefab: {fileID: 7120782686775776249, guid: aaf137f4a3f5946409b5799aa802b330, type: 3}
+  FactoryPrefab: {fileID: 7120782686775776249, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+  WirePrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  WirePreviewPrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  WireGhostPrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  RiverEntityPrefab: {fileID: 877173143585145346, guid: 39986ec7b97752f498108cf7fa25a736, type: 3}
