@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour {
 
 	private Vector2 lastMouseDownPosition;
 	private Vector2Int mouseoverCoordinates = new Vector2Int(-1,-1);
-	private float MOUSE_DRAG_THRESHOLD = 1f;
+	private float MOUSE_DRAG_THRESHOLD = 10f;
 
 	private bool connecting = false;
 	private List<Vector2Int> connectionPoints = new List<Vector2Int>();
@@ -35,6 +35,9 @@ public class GridManager : MonoBehaviour {
 	}
 
 	void Update() {
+		bool LMB = Input.GetMouseButtonUp(0) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD;
+		bool RMB = Input.GetMouseButtonUp(1) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD;
+
 		var old_mouseover = this.mouseoverCoordinates;
 
 		var xz_mouse_coords = GameManager.input.GetMouseXZIntersect();
@@ -86,7 +89,7 @@ public class GridManager : MonoBehaviour {
 
 				connectionHeadGhost.valid = canPlace;
 
-				if (canPlace && Input.GetMouseButtonDown(0)) {
+				if (canPlace && LMB) {
 					this.connectionPoints.Add(closest);
 					this.connectionPreview.Add(Instantiate(GameManager.prefab.WirePreviewPrefab, midpoint, Quaternion.LookRotation(direction, Vector3.up)));
 					if (canConnect) {
@@ -95,10 +98,10 @@ public class GridManager : MonoBehaviour {
 				}
 			}
 		} else if (this.tiles.IsInBounds(this.mouseoverCoordinates)) {
-			if (Input.GetMouseButtonUp(0) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD) {
+			if (LMB) {
 				 this.tiles[this.mouseoverCoordinates].OnLMB();
 			}
-			if (Input.GetMouseButtonUp(1) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD) {
+			if (RMB) {
 				 this.tiles[this.mouseoverCoordinates].OnRMB();
 			}
 		}
