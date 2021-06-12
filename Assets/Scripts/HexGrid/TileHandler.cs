@@ -13,7 +13,7 @@ public class TileHandler : MonoBehaviour {
 	private MeshRenderer groundRenderer;
 	private GameObject visualObject;
 
-	private Entity entity;
+	public Entity entity {get; private set;}
 
 	private bool _hover = false;
 	public bool hover {
@@ -30,21 +30,11 @@ public class TileHandler : MonoBehaviour {
 		}
 	}
 
-	// Start is called before the first frame update
-	void Start() {
-		
-	}
-
 	// Makes the TileHandler calculate the world coordinates to place itself at
 	public void SetGeometry(int x, int y, float radius) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
-
-		int half_offset = this.x % 2;
-
-		this.transform.position = new Vector3(this.x * 1.5f * radius, 0f, (this.y - half_offset / 2f) * radius * sqrt_3);
-
 		if (this.y % 2 == 1) {
 			this.groundRenderer.material.color = Color.gray;
 		}
@@ -70,6 +60,10 @@ public class TileHandler : MonoBehaviour {
 		UpdateVisuals();
 	}
 
+	public bool IsEmpty() {
+		return this.entity == null;
+	}
+
 	public void UpdateVisuals() {
 		if (visualObject != null) Destroy(visualObject);
 
@@ -86,6 +80,19 @@ public class TileHandler : MonoBehaviour {
 
 	public void OnMouseExit() {
 		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
+	}
+
+	public void OnLMB() {
+		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
+		if (IsEmpty()) {
+			SetObject(new Connectable(new HashSet<Item>(), new HashSet<Item>(), GameManager.prefab.FactoryPrefab));
+		} else if (this.entity.GetType() == typeof(Connectable)) {
+			this.manager.BeginConnecting(this.x, this.y);
+		}
+	}
+
+	public void OnRMB() {
+		DeleteObject();
 	}
 
 	// Update is called once per frame

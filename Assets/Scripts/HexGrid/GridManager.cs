@@ -12,6 +12,11 @@ public class GridManager : MonoBehaviour {
 
 	private Vector2Int mouseoverCoordinates = new Vector2Int(-1,-1);
 
+	private bool connecting = false;
+	private List<Vector2Int> connectionPoints = new List<Vector2Int>();
+	private List<GameObject> connectionPreview = new List<GameObject>();
+	private GameObject connectionHeadGhost;
+
 	// Start is called before the first frame update
 	void Start() {
 		int size_x = 100;
@@ -22,6 +27,7 @@ public class GridManager : MonoBehaviour {
 				tiles[x,y] = Instantiate(tilePrefab).GetComponent<TileHandler>();
 				tiles[x,y].manager = this;
 				tiles[x,y].SetGeometry(x, y, radius);
+				tiles[x,y].transform.position = GetPositionFromCoordinate(new Vector2Int(x,y));
 			}
 		}
 	}
@@ -29,18 +35,94 @@ public class GridManager : MonoBehaviour {
 	void Update() {
 		var old_mouseover = this.mouseoverCoordinates;
 
-		var xz_coords = GameManager.input.GetMouseXZIntersect();
-		if (xz_coords == Vector2.positiveInfinity) this.mouseoverCoordinates = new Vector2Int(-1,-1);
-		else this.mouseoverCoordinates = GetCoordinateFromXZ(xz_coords);
+		var xz_mouse_coords = GameManager.input.GetMouseXZIntersect();
+		if (xz_mouse_coords == Vector2.positiveInfinity) this.mouseoverCoordinates = new Vector2Int(-1,-1);
+		else this.mouseoverCoordinates = GetCoordinateFromXZ(xz_mouse_coords);
 
 		if (old_mouseover != this.mouseoverCoordinates) {
 			if (this.tiles.IsInBounds(old_mouseover)) this.tiles[old_mouseover].hover = false;
 			if (this.tiles.IsInBounds(this.mouseoverCoordinates)) this.tiles[this.mouseoverCoordinates].hover = true;
 		}
+
+		if (connecting) {
+			if (Input.GetKeyDown(KeyCode.Escape)) {
+				CancelConnecting();
+			} else {
+				// Find direction closest to cursor
+				Vector2Int last_point = this.connectionPoints[this.connectionPoints.Count - 1];
+				var neighbours = this.tiles.GetNeighbourCooridnates(last_point.x, last_point.y);
+				Vector2Int closest = Vector2Int.zero;
+				float sqrdistance = float.MaxValue;
+				foreach (var neighbour in neighbours) {
+					float dist = (new Vector3(xz_mouse_coords.x, 0f, xz_mouse_coords.y) - GetPositionFromCoordinate(neighbour)).sqrMagnitude;
+					if (dist < sqrdistance) {
+						closest = neighbour;
+						sqrdistance = dist;
+					}
+				}
+
+				Vector3 last_pos = GetPositionFromCoordinate(last_point);
+				Vector3 next_pos = GetPositionFromCoordinate(closest);
+				Vector3 direction = next_pos - last_pos;
+				Vector3 midpoint = (next_pos + last_pos)/2f;
+				connectionHeadGhost.transform.position = midpoint;
+				connectionHeadGhost.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+				if (Input.GetMouseButtonDown(0)) {
+					this.connectionPoints.Add(closest);
+					this.connectionPreview.Add(Instantiate(GameManager.prefab.WirePreviewPrefab, midpoint, Quaternion.LookRotation(direction, Vector3.up)));
+				}
+			}
+		} else if (this.tiles.IsInBounds(this.mouseoverCoordinates)) {
+			if (Input.GetMouseButtonDown(0)) {
+				 this.tiles[this.mouseoverCoordinates].OnLMB();
+			}
+			if (Input.GetMouseButtonDown(1)) {
+				 this.tiles[this.mouseoverCoordinates].OnRMB();
+			}
+		}
+	}
+
+	public void BeginConnecting(int x, int y) {
+		this.connecting = true;
+
+		connectionHeadGhost = Instantiate(GameManager.prefab.WireGhostPrefab);
+		connectionPoints.Clear();
+		connectionPoints.Add(new Vector2Int(x,y));
+	}
+
+	public void CancelConnecting() {
+		this.connecting = false;
+		
+		foreach (var preview_object in connectionPreview) {
+			Destroy(preview_object);
+		}
+		connectionPoints.Clear();
+		connectionPreview.Clear();
+	}
+
+	public void FinishConnecting() {
+		this.connecting = false;
+
+		var connectionTiles = new List<TileHandler>(connectionPoints.Count - 2);
+		for (int i = 1; i < connectionPoints.Count - 1; i++) {
+			connectionTiles[i] = this.tiles[connectionPoints[i]];
+		}
+
+		Connectable A = this.tiles[connectionPoints[0]].entity as Connectable;
+		Connectable B = this.tiles[connectionPoints[connectionPoints.Count - 1]].entity as Connectable;
+
+		new Connection(connectionPoints, connectionTiles, A, B);
+
+		foreach (var preview_object in connectionPreview) {
+			Destroy(preview_object);
+		}
+		connectionPoints.Clear();
+		connectionPreview.Clear();
 	}
 
 	///<summary>
-	///	Converts a point in the XZ plane to a corresponding TileManager, returns null if out of bounds
+	///	Converts a point in the XZ plane to a corresponding TileHandler, returns null if out of bounds
 	///</summary>
 	public TileHandler GetTileFromXZ(Vector2 position) {
 		Vector2Int coords = GetCoordinateFromXZ(position);
@@ -76,6 +158,11 @@ public class GridManager : MonoBehaviour {
 	///</summary>
 	public Vector2Int GetCoordinateFromXZ(Vector3 position) {
 		return GetCoordinateFromXZ(new Vector2(position.x, position.z));
+	}
+
+	public Vector3 GetPositionFromCoordinate(Vector2Int coordinate) {
+		int half_offset = coordinate.x % 2;
+		return new Vector3(coordinate.x * 1.5f * radius, 0f, (coordinate.y - half_offset / 2f) * radius * sqrt_3);
 	}
 
 	public static Vector3Int cube_coordinate_hex_round(Vector3 cube_coordinate) {

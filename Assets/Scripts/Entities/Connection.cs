@@ -8,6 +8,20 @@ public class Connection {
 	private List<TileHandler> wires;
 	private bool disconnecting = false;
 
+	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Connectable A, Connectable B) {
+		this.A = A;
+		this.B = B;
+		this.wires = wireTiles;
+
+		for (int i = 0; i < wireTiles.Count; i++) {
+			Wire wire = new Wire(this);
+			this.wires[i].SetObject(wire);
+		}
+
+		A.Connect(this);
+		B.Connect(this);
+	}
+
 	/// <summary>
 	/// Destroys the connection and related objects, the Connection object is not usable after this call.
 	/// </summary>
