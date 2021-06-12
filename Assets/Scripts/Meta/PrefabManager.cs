@@ -5,4 +5,5 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour {
 	[Header("Prefabs")]
 	public GameObject MountainEntityPrefab;
+	public GameObject RiverEntityPrefab;
 }

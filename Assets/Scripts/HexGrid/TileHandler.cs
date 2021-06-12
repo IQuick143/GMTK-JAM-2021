@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,14 @@ public class TileHandler : MonoBehaviour {
 	private GameObject visualObject;
 
 	private Entity entity;
+
+	public bool IsEmpty
+	{
+		get
+		{
+			return entity == null;
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start() {
