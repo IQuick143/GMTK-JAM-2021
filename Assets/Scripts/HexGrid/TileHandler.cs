@@ -55,6 +55,9 @@ public class TileHandler : MonoBehaviour {
 	}
 
 	public void SetObject(Entity entity) {
+		if (this.entity != null) {
+			entity.Delete();
+		}
 		this.entity = entity;
 		this.UpdateVisuals();
 	}
