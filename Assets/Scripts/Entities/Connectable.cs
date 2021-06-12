@@ -40,5 +40,5 @@ public class Connectable : Entity {
 }
 
 public enum Item {
-
+	RawResource
 }
