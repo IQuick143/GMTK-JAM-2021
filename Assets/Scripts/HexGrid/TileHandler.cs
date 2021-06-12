@@ -9,9 +9,26 @@ public class TileHandler : MonoBehaviour {
 	private int x=0,y=0;
 
 	public GridManager manager;
+	[SerializeField]
+	private MeshRenderer groundRenderer;
 	private GameObject visualObject;
 
 	private Entity entity;
+
+	private bool _hover = false;
+	public bool hover {
+		get {return _hover;}
+		set {
+			if (value != _hover) {
+				_hover = value;
+				if (_hover) {
+					OnMouseEnter();
+				} else {
+					OnMouseExit();
+				}
+			}
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start() {
@@ -19,13 +36,18 @@ public class TileHandler : MonoBehaviour {
 	}
 
 	// Makes the TileHandler calculate the world coordinates to place itself at
-	public void SetCoordinate(int x, int y) {
+	public void SetGeometry(int x, int y, float radius) {
 		this.x = x;
 		this.y = y;
+		this.radius = radius;
 
 		int half_offset = this.x % 2;
 
 		this.transform.position = new Vector3(this.x * 1.5f * radius, 0f, (this.y - half_offset / 2f) * radius * sqrt_3);
+
+		if (this.y % 2 == 1) {
+			this.groundRenderer.material.color = Color.gray;
+		}
 	}
 
 	public IEnumerable<TileHandler> GetNeighbours() {
@@ -38,15 +60,21 @@ public class TileHandler : MonoBehaviour {
 	}
 
 	public void UpdateVisuals() {
-		// DELETE VISUAL OBJECT
 		Destroy(visualObject);
 
 		if (entity != null) {
-			// ADD A VISUAL OBJECT BASED ON 
 			const float Y_OFFSET = 1f;
 
 			Instantiate(entity.GetPrefab(), transform.position + Vector3.up * Y_OFFSET, Quaternion.identity);
 		}
+	}
+
+	public void OnMouseEnter() {
+		this.groundRenderer.material.color = Color.red;
+	}
+
+	public void OnMouseExit() {
+		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
 	}
 
 	// Update is called once per frame

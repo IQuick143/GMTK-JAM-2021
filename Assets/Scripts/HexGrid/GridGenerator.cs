@@ -22,22 +22,21 @@ public class GridGenerator : MonoBehaviour
 	public bool UseRandomSeed = true;
 
 	//TODO: Make sure this takes place AFTER grid manager
-	private void Start()
-	{
+	private void Start() {
 		if (UseRandomSeed)
 			Seed = UnityEngine.Random.Range(0, int.MaxValue);
 
 		var manager = GetComponent<GridManager>();
 		var tiles = manager.tiles;
 
-        /*
-         * Generate mountains
-         */
+		/*
+		 * Generate mountains
+		 */
 
-        for (int x = 0; x < tiles.Width; x++)
-        {
-            for (int y = 0; y < tiles.Height; y++)
-            {
+		for (int x = 0; x < tiles.Width; x++)
+		{
+			for (int y = 0; y < tiles.Height; y++)
+			{
 				float seed = (float)Seed / int.MaxValue;
 				float xPercent = (float)x / tiles.Width;
 				float yPercent = (float)y / tiles.Height;
@@ -50,7 +49,6 @@ public class GridGenerator : MonoBehaviour
 				if (noiseLevel >= MountainAmplitudeCutoff)
 					tiles[x, y].SetObject(new Mountain());
 			}
-        }
-
+		}
 	}
 }
