@@ -40,12 +40,14 @@ public class MenuManager : MonoBehaviour {
 	public void ShowTextTooltip(string text) {
 
 		this.tooltip.SetActive(true);
+		this.text.text = text;
 		this.tooltip.SetActive(false);
 	}
 
 	public void ShowConnectableTooltip(Connectable connectable) {
 
 		this.tooltip.SetActive(true);
+		this.text.text = connectable.ToString();
 		this.tooltip.SetActive(true);
 	}
 }

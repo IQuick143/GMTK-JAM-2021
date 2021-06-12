@@ -5,21 +5,21 @@ using System.Linq;
 using UnityEngine;
 
 public class Connection {
-	private Connectable A;
-	private Connectable B;
+	private Connectable from;
+	private Connectable to;
 	private List<TileHandler> wires;
 	private bool disconnecting = false;
 	private GameObject startingConnection;
 	public Item Stream;
 
-	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Vector3 A_coordinate, Connectable A, Connectable B) {
-		this.A = A;
-		this.B = B;
+	public Connection(List<Vector2Int> wireCoordinates, List<TileHandler> wireTiles, Vector3 fromCoordinate, Connectable from, Connectable to) {
+		this.from = from;
+		this.to = to;
 		this.wires = wireTiles;
-		Stream = A.inputs
-			.Intersect(B.outputs)
-			.Concat(A.outputs
-				.Intersect(B.inputs)
+		Stream = from.inputs
+			.Intersect(to.outputs)
+			.Concat(from.outputs
+				.Intersect(to.inputs)
 			).First();
 
 		for (int i = 0; i < wireTiles.Count; i++) {
@@ -64,10 +64,10 @@ public class Connection {
 		var fake_wire = GameObject.Instantiate(GameManager.prefab.WirePrefab);
 		fake_wire.transform.SetParent(startingConnection.transform);
 		startingConnection.transform.rotation = Quaternion.AngleAxis(first_dir.ToDegrees(), Vector3.up);
-		startingConnection.transform.position = A_coordinate;
+		startingConnection.transform.position = fromCoordinate;
 
-		A.Connect(this);
-		B.Connect(this);
+		from.Connect(this);
+		to.Connect(this);
 	}
 
 	/// <summary>
@@ -80,13 +80,13 @@ public class Connection {
 		}
 		disconnecting = true;
 
-		if (A != null) A.Disconnect(this);
-		if (B != null) B.Disconnect(this);
+		from?.Disconnect(this);
+		to?.Disconnect(this);
 
 		foreach (var wire_tile in this.wires) {
 			wire_tile.DeleteObject();
 		}
-		GameObject.Destroy(startingConnection);
+		Object.Destroy(startingConnection);
 	}
 
 
@@ -95,8 +95,8 @@ public class Connection {
 	/// Tells a Connectable what is the other endpoint of the connection
 	/// </summary>
 	public Connectable Other(Connectable that) {
-		if (that == A) return B;
-		if (that == B) return A;
+		if (that == from) return to;
+		if (that == to) return from;
 		throw new System.ArgumentException("Cannot call other on a connectable that is not connected by this connection.");
 	}
 }

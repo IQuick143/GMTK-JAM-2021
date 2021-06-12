@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 public class GridManager : MonoBehaviour {
@@ -138,10 +140,22 @@ public class GridManager : MonoBehaviour {
 			connectionTiles.Add(this.tiles[connectionPoints[i]]);
 		}
 
-		Connectable A = this.tiles[connectionPoints[0]].entity as Connectable;
-		Connectable B = this.tiles[connectionPoints[connectionPoints.Count - 1]].entity as Connectable;
+		Connectable a = this.tiles[connectionPoints[0]].entity as Connectable;
+		Connectable b = this.tiles[connectionPoints[connectionPoints.Count - 1]].entity as Connectable;
+		Connectable from, to;
 
-		new Connection(connectionPoints, connectionTiles, this.tiles[connectionPoints[0]].transform.position, A, B);
+		if (a.inputs.Intersect(b.outputs).Any())
+		{
+			from = b;
+			to = a;
+		}
+		else
+		{
+			from = a;
+			to = b;
+		}
+
+		new Connection(connectionPoints, connectionTiles, this.tiles[connectionPoints[0]].transform.position, from, to);
 
 		foreach (var preview_object in connectionPreview) {
 			Destroy(preview_object);
