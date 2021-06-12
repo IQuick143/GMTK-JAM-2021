@@ -25,7 +25,12 @@ public class MenuManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		tooltipRect.position = Input.mousePosition;
+
+		const int OFFSET = 10;
+
+		tooltipRect.position = (Vector2)Input.mousePosition;
+		tooltipRect.position += Vector3.down * (tooltipRect.sizeDelta.y * 0.5f + OFFSET);
+		tooltipRect.position += Vector3.right * (tooltipRect.sizeDelta.x * 0.5f + OFFSET);
 	}
 
 	public void HideTooltip() {
