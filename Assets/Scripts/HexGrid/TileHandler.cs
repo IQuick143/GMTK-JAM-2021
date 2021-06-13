@@ -85,7 +85,10 @@ public class TileHandler : MonoBehaviour {
 	public void OnLMB() {
 		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
 		if (IsEmpty) {
-			SetObject(GameManager.menu.selectedFactory);
+			if (GameManager.menu.selectedFactory != null && GameManager.Instance.Currency > 1+GameManager.menu.selectedFactory.GetComponent<Connectable>().price) {
+				SetObject(GameManager.menu.selectedFactory);
+				GameManager.Instance.Currency -= GameManager.menu.selectedFactory.GetComponent<Connectable>().price;
+			}
 		} else if (this.entity.GetType() == typeof(Connectable)) {
 			this.manager.BeginConnecting(this.x, this.y);
 		}
