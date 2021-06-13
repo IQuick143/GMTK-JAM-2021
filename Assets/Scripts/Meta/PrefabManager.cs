@@ -7,6 +7,14 @@ public class PrefabManager : MonoBehaviour {
 	public GameObject MountainEntityPrefab;
 	public GameObject RiverEntityPrefab;
 
+	[Header("Factory objects")]
+	public GameObject MetalFactory;
+	public GameObject MetalComponentFactory;
+	public GameObject PlankFactory;
+	public GameObject FurnitureFactory;
+	public GameObject FineFurnitureFactory;
+	public GameObject BasicToolFactory;
+
 	[Header("Dynamic objects")]
 	public GameObject FactoryPrefab;
 	public List<GameObject> ResourcePrefabs;

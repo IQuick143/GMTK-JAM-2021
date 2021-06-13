@@ -38,10 +38,28 @@ public class MenuManager : MonoBehaviour {
 	[SerializeField]
 	private string sidebarCurrencyTextFormat = "${0}";
 
+	[Header("Factory Selection")]
+	[SerializeField]
+	public GameObject selectedFactory = null;
+	private int selectedFactoryIndex = -1;
+
+	private List<GameObject> availableFactories;
+	private List<FactorySelectionButton> factorySelectionButtons;
+
+	[SerializeField]
+	private GameObject factorySelectionButtonPrefab;
+	[SerializeField]
+	private Transform factorySelectionButtonContainer;
+
 	// Start is called before the first frame update
 	void Start() {
 		this.tooltip.SetActive(false);
 		this.tooltipRect = tooltip.GetComponent<RectTransform>();
+		this.availableFactories = new List<GameObject>();
+		this.factorySelectionButtons = new List<FactorySelectionButton>();
+		AddFactories(new List<GameObject>() {
+			GameManager.prefab.MetalFactory, GameManager.prefab.PlankFactory
+		});
 	}
 
 	// Update is called once per frame
@@ -58,6 +76,22 @@ public class MenuManager : MonoBehaviour {
 		sidebarGeneratingOutputText.text = string.Format(sidebarGeneratingTextFormat, GameManager.Instance.CurrentOutputPerSecond);
 		sidebarRequiredOutputText.text = string.Format(sidebarRequiredTextFormat, -1);
 		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, GameManager.Instance.Currency);
+	}
+
+	public void AddFactories(List<GameObject> factoriesToAdd) {
+		int pre_add_count = this.availableFactories.Count;
+		for (int i = 0; i < factoriesToAdd.Count; i++) {
+			this.availableFactories.Add(factoriesToAdd[i]);
+			var button_object = Instantiate(factorySelectionButtonPrefab, this.factorySelectionButtonContainer);
+			this.factorySelectionButtons.Add(button_object.GetComponent<FactorySelectionButton>());
+			this.factorySelectionButtons[pre_add_count + i].index = pre_add_count + i;
+		}
+	}
+
+	public void ChooseFactory(int i) {
+		if (selectedFactoryIndex >= 0) factorySelectionButtons[selectedFactoryIndex].Unselect();
+		selectedFactory = availableFactories[i];
+		selectedFactoryIndex = i;
 	}
 
 	public void HideTooltip() {
