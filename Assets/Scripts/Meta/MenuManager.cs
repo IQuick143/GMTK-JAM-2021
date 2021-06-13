@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject inputs;
 	[SerializeField]
-	private GameObject outputs;
+	private Icon output_icon;
 	[SerializeField]
 	private GameObject icon_prefab;
 
@@ -53,6 +53,8 @@ public class MenuManager : MonoBehaviour {
 		foreach (Item item in (Item[]) System.Enum.GetValues(typeof(Item))) {
 			if (connectable.inputs.Contains(item)) input_icons.Add(CreateIcon(item, inputs.transform));
 		}
+
+		output_icon.ShowItem(connectable.output);
 
 		this.tooltip.SetActive(true);
 		this.text.text = connectable.ToString();
