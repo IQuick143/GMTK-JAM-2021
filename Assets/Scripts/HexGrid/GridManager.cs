@@ -256,5 +256,6 @@ public class GridManager : MonoBehaviour {
 			.Sum(i => i.Stream.GetPrice());
 
 		GameManager.Instance.Currency += GameManager.Instance.CurrentOutputPerSecond;
+		GameManager.Instance.Currency -= (int)GameManager.Instance.CurrentCost;
 	}
 }

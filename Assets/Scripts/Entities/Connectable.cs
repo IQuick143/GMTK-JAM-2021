@@ -26,6 +26,9 @@ public class Connectable : Entity {
 	[SerializeField]
 	public Type type;
 
+	[SerializeField]
+	private Sprite Icon;
+
 	void Awake() {
 		this.connections = new List<Connection>();
 		this.input_dependencies = new Dictionary<Item, List<Connectable>>();
