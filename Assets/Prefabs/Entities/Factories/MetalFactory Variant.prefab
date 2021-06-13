@@ -20,6 +20,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: factoryname
+      value: Metal Refinery
+      objectReference: {fileID: 0}
+    - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: _inputs.Array.data[0]
       value: 4
       objectReference: {fileID: 0}

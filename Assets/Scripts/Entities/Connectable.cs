@@ -22,12 +22,15 @@ public class Connectable : Entity {
 	private Item _output;
 
 	[SerializeField]
-	private new string name;
+	public string factoryname;
+
+	[SerializeField]
+	public int price;
 	[SerializeField]
 	public Type type;
 
 	[SerializeField]
-	private Sprite Icon;
+	public Sprite Icon;
 
 	void Awake() {
 		this.connections = new List<Connection>();
@@ -95,11 +98,11 @@ public class Connectable : Entity {
 
 	public override string ToString() {
 		switch (type) {
-			case Type.Factory: return $"{this.name} ({(active?"Active":"Inactive")})";
-			case Type.Market: return $"{this.name}";
-			case Type.Source: return $"{this.name}";
+			case Type.Factory: return $"{this.factoryname} ({(active?"Active":"Inactive")})";
+			case Type.Market: return $"{this.factoryname}";
+			case Type.Source: return $"{this.factoryname}";
 		}
-		return $"{this.name} ({(active?"Active":"Inactive")})";
+		return $"{this.factoryname} ({(active?"Active":"Inactive")})";
 	}
 
 	public enum Type {

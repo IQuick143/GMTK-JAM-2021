@@ -97,6 +97,7 @@ public class MenuManager : MonoBehaviour {
 			var button_object = Instantiate(factorySelectionButtonPrefab, this.factorySelectionButtonContainer);
 			this.factorySelectionButtons.Add(button_object.GetComponent<FactorySelectionButton>());
 			this.factorySelectionButtons[pre_add_count + i].index = pre_add_count + i;
+			this.factorySelectionButtons[pre_add_count + i].SetInfo(factoriesToAdd[i].GetComponent<Connectable>());
 		}
 	}
 

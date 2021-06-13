@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: name
       value: Wood Saw
       objectReference: {fileID: 0}
+    - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: factoryname
+      value: Heater Factory
+      objectReference: {fileID: 0}
     - target: {fileID: 1118763209489326014, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
