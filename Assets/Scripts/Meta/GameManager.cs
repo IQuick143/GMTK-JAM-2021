@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
 	public int Currency;
 
+	public bool GameOver { get; private set; }
+
 	void Awake() {
 		if (Instance == null) Instance = this;
 		else if (Instance != this) Destroy(this.gameObject);
@@ -50,9 +52,15 @@ public class GameManager : MonoBehaviour {
 		InvokeRepeating(nameof(IncreaseCosts), 1f, 1f);
 	}
 
+	private void Update()
+	{
+		if (Currency <= 0)
+			GameOver = true;
+	}
+
 	public void IncreaseCosts()
 	{
-		if (CurrentOutputPerSecond == 0)
+		if (CurrentOutputPerSecond == 0 || GameOver)
 			return;
 
 		CurrentCost += CostIncreasePerSecond;

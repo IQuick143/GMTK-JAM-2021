@@ -44,6 +44,9 @@ public class MenuManager : MonoBehaviour {
 	[SerializeField]
 	private string sidebarCurrencyTextFormat = "${0}";
 
+	[SerializeField]
+	private TMP_Text gameOver;
+
 	[Header("Factory Selection")]
 	[SerializeField]
 	public GameObject selectedFactory = null;
@@ -82,7 +85,10 @@ public class MenuManager : MonoBehaviour {
 		sidebarSalesText.text = string.Format(salesTextFormat, GameManager.Instance.CurrentOutputPerSecond);
 		sidebarCostText.text = string.Format(CostTextFormat, (int)GameManager.Instance.CurrentCost);
 		sidebarProfitText.text = string.Format(profitTextFormat, GameManager.Instance.CurrentOutputPerSecond - (int)GameManager.Instance.CurrentCost);
-		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, GameManager.Instance.Currency);
+		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, Mathf.Max(0, GameManager.Instance.Currency));
+
+		if (GameManager.Instance.GameOver)
+			gameOver.gameObject.SetActive(true);
 
 		if (GameManager.Instance.CurrentOutputPerSecond < (int)GameManager.Instance.CurrentCost)
 			sidebarProfitText.color = Color.red;

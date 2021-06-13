@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783a19193fe75434c80aedd14341f4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MountainAmplitudeCutoff: 0.7
+  MountainAmplitudeCutoff: 0.75
   MountainNoiseScale: 15
   MinRiverCount: 2
   MaxRiverCount: 8
@@ -457,6 +457,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2562758101396483475, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 2815957176687840852, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -585,13 +589,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7628933905662652941, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
-      propertyPath: MarkedPrefab
-      value: 
-      objectReference: {fileID: 6823173857166813438, guid: a71654eb56628d94caf9bd38bbb8bb40, type: 3}
     - target: {fileID: 7628933905662652942, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: Currency
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628933905662652942, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
+      propertyPath: CurrentCost
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7628933905662652943, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: m_RootOrder
