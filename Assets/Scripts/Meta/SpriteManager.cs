@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteManager : MonoBehaviour {
-	[SerializeField]
-	private Sprite missingTexture;
-	[SerializeField]
-	private Sprite rawResource;
-	[SerializeField]
-	private Sprite money;
-	public Sprite GetItemIcon(Item item) {
-		switch (item) {
-			case Item.RawResource: return rawResource;
-			case Item.Money: return money;
-			default: {
-				Debug.LogWarning($"{item} is missing a texture!");
-				return missingTexture;
-			}
-		}
-	}
+
+	public Sprite missingTexture;
+	public Sprite wood;
+	public Sprite planks;
+	public Sprite furniture;
+	public Sprite fineFurniture;
+	public Sprite ore;
+	public Sprite metal;
+	public Sprite metalComponents;
+	public Sprite basicTools;
+	public Sprite heater;
+	public Sprite money;
 }

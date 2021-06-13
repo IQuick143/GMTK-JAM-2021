@@ -1095,7 +1095,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missingTexture: {fileID: 21300000, guid: 7cf0157b5e8f54b47baab7881c5bdf3a, type: 3}
-  rawResource: {fileID: 21300000, guid: 7cf0157b5e8f54b47baab7881c5bdf3a, type: 3}
+  wood: {fileID: 21300000, guid: 5725068b90d192e4f93d34bca79ce2fc, type: 3}
+  planks: {fileID: 21300000, guid: 247652ae6a1de0f47914679fd5eef183, type: 3}
+  furniture: {fileID: 21300000, guid: 1b36134307e1c7742a5aa5cc025bb56f, type: 3}
+  fineFurniture: {fileID: 21300000, guid: 71d6ea1831144b6439fe95efbba86c1b, type: 3}
+  ore: {fileID: 21300000, guid: ce397187c02e3024b9de0fc4c8774c01, type: 3}
+  metal: {fileID: 21300000, guid: b335d66e39812a24990cbb9e5d9ca0f9, type: 3}
+  metalComponents: {fileID: 21300000, guid: b717206e189388b43bb4c393ed5ab497, type: 3}
+  basicTools: {fileID: 21300000, guid: 3c0a8ddffaff14d46b8e3324217b42e9, type: 3}
   money: {fileID: 21300000, guid: 4520989568749aa439df67ec9ceb57b3, type: 3}
 --- !u!1 &7662663054298280851
 GameObject:
