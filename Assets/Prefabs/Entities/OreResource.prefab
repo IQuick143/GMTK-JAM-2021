@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputs: 
   _output: 4
+  name: Ore Mine
 --- !u!1 &9055958208231288288
 GameObject:
   m_ObjectHideFlags: 0

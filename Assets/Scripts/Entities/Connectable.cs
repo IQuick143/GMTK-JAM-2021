@@ -21,6 +21,9 @@ public class Connectable : Entity {
 	[SerializeField]
 	private Item _output;
 
+	[SerializeField]
+	private new string name;
+
 	void Awake() {
 		this.connections = new List<Connection>();
 		this.input_dependencies = new Dictionary<Item, List<Connectable>>();
@@ -82,6 +85,6 @@ public class Connectable : Entity {
 	}
 
 	public override string ToString() {
-		return "Connectable "+(active?"Active":"Inactive");
+		return $"{this.name} ({(active?"Active":"Inactive")})";
 	}
 }

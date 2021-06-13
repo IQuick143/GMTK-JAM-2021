@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: name
+      value: Fine Furniture Mastershop
+      objectReference: {fileID: 0}
+    - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: _output
       value: 3
       objectReference: {fileID: 0}
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120782686775776249, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: m_Name
-      value: FineFurnitureFactory
+      value: FineFurnitureFactory Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7246784230886153120, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: m_RootOrder
