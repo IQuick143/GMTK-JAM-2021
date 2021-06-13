@@ -362,13 +362,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 36.84, y: 4, z: 37.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +509,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1510368980772476280, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
+      propertyPath: rawResource
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c9e14ad27cd7ab46b34689bda5fe8b3, type: 3}
     - target: {fileID: 1712557139275275060, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -653,6 +657,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3291227471540089247, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
+      propertyPath: missingTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 7cf0157b5e8f54b47baab7881c5bdf3a, type: 3}
     - target: {fileID: 3446618374057671600, guid: 28c2ed672ed5281439e2592aad8cbbc8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

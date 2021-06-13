@@ -139,7 +139,7 @@ public class GridGenerator : MonoBehaviour
 			GenerateRandomResource(manager);
 
 		/*
-		 * Generate marked
+		 * Generate market
 		 */
 
 		{

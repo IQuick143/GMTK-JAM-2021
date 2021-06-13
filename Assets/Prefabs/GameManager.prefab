@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 7628933905662652941}
   - component: {fileID: 7628933905662652940}
   - component: {fileID: 7780760384546460126}
+  - component: {fileID: 1510368980772476280}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -589,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171f1b58c4c473e4c850a70edfa2d5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Currency: 0
 --- !u!114 &7628933905662652941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,7 +640,21 @@ MonoBehaviour:
   text: {fileID: 4459690160194755881}
   recipeArea: {fileID: 505004665771751136}
   inputs: {fileID: 6058337001826029400}
+  outputs: {fileID: 7468273665333554044}
   icon_prefab: {fileID: 7365539298658132794, guid: e9f47f22d2af3414a88f6f00120e3dd8, type: 3}
+--- !u!114 &1510368980772476280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7628933905662652945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edb34af082077644b3efb89a6322f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missingTexture: {fileID: 21300000, guid: 7cf0157b5e8f54b47baab7881c5bdf3a, type: 3}
 --- !u!1 &8881796417909874209
 GameObject:
   m_ObjectHideFlags: 0

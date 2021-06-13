@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class Icon : MonoBehaviour {
-	// Start is called before the first frame update
-	void Start() {
-		
+	public void ShowItem(Item item) {
+		this.GetComponent<Image>().sprite = GameManager.sprite.GetItemIcon(item);
 	}
 
-	// Update is called once per frame
-	void Update() {
-		
+	public void Remove() {
+		Destroy(this.gameObject);
 	}
 }

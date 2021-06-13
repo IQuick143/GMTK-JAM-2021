@@ -15,7 +15,11 @@ public class MenuManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject inputs;
 	[SerializeField]
+	private GameObject outputs;
+	[SerializeField]
 	private GameObject icon_prefab;
+
+	private List<Icon> input_icons = new List<Icon>();
 
 	// Start is called before the first frame update
 	void Start() {
@@ -45,9 +49,32 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void ShowConnectableTooltip(Connectable connectable) {
+		DeleteIcons();
+		foreach (Item item in (Item[]) System.Enum.GetValues(typeof(Item))) {
+			if (connectable.inputs.Contains(item)) input_icons.Add(CreateIcon(item, inputs.transform));
+		}
 
 		this.tooltip.SetActive(true);
 		this.text.text = connectable.ToString();
 		this.tooltip.SetActive(true);
+	}
+
+	private Icon CreateIcon(Item item) {
+		Icon icon = Instantiate(icon_prefab).GetComponent<Icon>();
+		icon.ShowItem(item);
+		return icon;
+	}
+
+	private Icon CreateIcon(Item item, Transform parent) {
+		Icon icon = Instantiate(icon_prefab, parent).GetComponent<Icon>();
+		icon.ShowItem(item);
+		return icon;
+	}
+
+	private void DeleteIcons() {
+		foreach (Icon icon in input_icons) {
+			icon.Remove();
+		}
+		input_icons.Clear();
 	}
 }
