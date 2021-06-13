@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 	public static PrefabManager prefab { get; private set; }
 	public static MenuManager menu { get; private set; }
 	public static SpriteManager sprite {get; private set; }
+	public int CurrentOutputPerSecond { get; set; }
 
 	public int Currency;
 

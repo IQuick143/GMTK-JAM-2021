@@ -243,9 +243,10 @@ public class GridManager : MonoBehaviour {
 		if (market == null)
 			return;
 
-		foreach (var i in market.connections)
-			GameManager.Instance.Currency += i.Stream.GetPrice();
+		GameManager.Instance.CurrentOutputPerSecond = market.connections
+			.Where(i => i.Other(market).active)
+			.Sum(i => i.Stream.GetPrice());
 
-		Debug.Log("$" + GameManager.Instance.Currency);
+		GameManager.Instance.Currency += GameManager.Instance.CurrentOutputPerSecond;
 	}
 }
