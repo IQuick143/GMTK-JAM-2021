@@ -5,6 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 public enum Item {
+	Wood,
+	Planks,
+	Furniture,
+	FineFurniture,
+	Ore,
+	Metal,
+	MetalComponents,
+	
+	BasicTools,
 	RawResource,
 	FactoryProduct,
 	Money
