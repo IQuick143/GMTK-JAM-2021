@@ -9,7 +9,7 @@ public class GridManager : MonoBehaviour {
 	private GameObject tilePrefab;
 
 	public HexArray<TileHandler> tiles { get; private set; }
-	public Connectable marked { get; set; }
+	public Connectable market { get; set; }
 
 	private float sqrt_3 = Mathf.Sqrt(3);
 	private float radius = 1/Mathf.Sqrt(3);
@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour {
 			}
 		}
 
-		InvokeRepeating(nameof(SellToMarked), 1f, 1f);
+		InvokeRepeating(nameof(SellToMarket), 1f, 1f);
 	}
 
 	void Update() {
@@ -240,14 +240,14 @@ public class GridManager : MonoBehaviour {
 		return new Vector3Int(rx, ry, rz);
 	}
 
-	private void SellToMarked()
+	private void SellToMarket()
 	{
 		//If marked is unset, abort
-		if (marked == null)
+		if (market == null)
 			return;
 
-		foreach (var i in marked.connections)
-			GameManager.Instance.Currency += i.Stream.WorthPerSecond;
+		foreach (var i in market.connections)
+			GameManager.Instance.Currency += i.Stream.GetPrice();
 
 		Debug.Log("$" + GameManager.Instance.Currency);
 	}

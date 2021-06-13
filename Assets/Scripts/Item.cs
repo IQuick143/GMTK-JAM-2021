@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Item
-{
-	public static readonly Item RawResource = new Item(0);
-	public static readonly Item FactoryProduct = new Item(1);
+public enum Item {
+	RawResource,
+	FactoryProduct
+}
 
-	public int WorthPerSecond { get; }
-
-	private Item(int worthPerSecond)
-	{
-		WorthPerSecond = worthPerSecond;
+public static class ItemExtensions {
+	public static int GetPrice(this Item item) {
+		switch (item) {
+			case Item.RawResource: return 0;
+			case Item.FactoryProduct: return 1;
+			default: return 0;
+		}
 	}
-
 }
