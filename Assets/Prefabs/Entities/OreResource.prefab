@@ -48,8 +48,9 @@ MonoBehaviour:
   _output: 4
   name: Ore Mine
   type: 1
---- !u!1 &9055958208231288288
-GameObject:
+  Icon: {fileID: 0}
+--- !u!1001 &2490460363432454733
+PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:

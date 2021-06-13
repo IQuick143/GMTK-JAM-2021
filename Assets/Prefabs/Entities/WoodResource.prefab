@@ -48,8 +48,9 @@ MonoBehaviour:
   _output: 0
   name: Wood Forest
   type: 1
---- !u!1 &9055958208231288288
-GameObject:
+  Icon: {fileID: 0}
+--- !u!1001 &771913386830797115
+PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
