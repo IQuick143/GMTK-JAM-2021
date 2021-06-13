@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 public enum Item {
 	RawResource,
-	FactoryProduct
+	FactoryProduct,
+	Money
 }
 
 public static class ItemExtensions {
@@ -14,6 +15,7 @@ public static class ItemExtensions {
 		switch (item) {
 			case Item.RawResource: return 0;
 			case Item.FactoryProduct: return 1;
+			case Item.Money: return 1;
 			default: return 0;
 		}
 	}

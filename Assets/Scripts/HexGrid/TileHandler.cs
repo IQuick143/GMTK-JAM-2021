@@ -96,7 +96,7 @@ public class TileHandler : MonoBehaviour {
 		if (IsEmpty) {
 			SetObject(new Connectable(
 				inputs: new HashSet<Item>() {Item.RawResource}, 
-				outputs: new HashSet<Item>() {Item.FactoryProduct}, 
+				output: Item.FactoryProduct, 
 				prefab: GameManager.prefab.FactoryPrefab)
 			);
 		} else if (this.entity.GetType() == typeof(Connectable)) {

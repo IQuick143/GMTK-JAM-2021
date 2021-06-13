@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Connectable : Entity {
 	public HashSet<Item> inputs {get; private set;}
-	public HashSet<Item> outputs {get; private set;}
+	public Item output {get; private set;}
 
 	public List<Connection> connections = new List<Connection>();
 
@@ -14,19 +14,20 @@ public class Connectable : Entity {
 
 	private bool isBeingDeleted = false;
 
-	public Connectable(HashSet<Item> inputs, HashSet<Item> outputs, GameObject prefab) {
+	public Connectable(HashSet<Item> inputs, Item output, GameObject prefab) {
 		this.inputs = inputs;
-		this.outputs = outputs;
+		this.output = output;
 		this.prefab = prefab;
 	}
 
 	public bool CanConnect(Connectable other) {
-		return this.inputs.Overlaps(other.outputs) || this.outputs.Overlaps(other.inputs);
+		return this.inputs.Contains(other.output) || other.inputs.Contains(this.output);
 	}
 
-	public IEnumerable<Item> GetCompatiblePorts(Connectable other)
-	{
-		return inputs.Intersect(other.outputs).Concat(outputs.Intersect(other.outputs));
+	public Item? GetCompatiblePorts(Connectable other) {
+		if (this.inputs.Contains(other.output)) return other.output;
+		if (other.inputs.Contains(this.output)) return this.output;
+		return null;
 	}
 	
 	public void Connect(Connection con) {

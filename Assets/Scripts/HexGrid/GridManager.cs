@@ -144,13 +144,10 @@ public class GridManager : MonoBehaviour {
 		Connectable b = this.tiles[connectionPoints[connectionPoints.Count - 1]].entity as Connectable;
 		Connectable from, to;
 
-		if (a.inputs.Intersect(b.outputs).Any())
-		{
+		if (a.inputs.Contains(b.output)) {
 			from = b;
 			to = a;
-		}
-		else
-		{
+		} else {
 			from = a;
 			to = b;
 		}

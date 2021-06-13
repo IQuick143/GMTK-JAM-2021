@@ -153,16 +153,12 @@ public class GridGenerator : MonoBehaviour
 
 			manager.market = new Connectable(
 				inputs: new HashSet<Item>() { Item.FactoryProduct },
-				outputs: new HashSet<Item>(),
+				output: Item.Money,
 				prefab: GameManager.prefab.MarkedPrefab
 			);
 
 			tiles[x, y].SetObject(manager.market);
-
-			
 		}
-
-		
 	}
 
 	/// <summary>
@@ -183,7 +179,7 @@ public class GridGenerator : MonoBehaviour
 
 		manager.tiles[x, y].SetObject(new Connectable(
 			inputs: new HashSet<Item>(),
-			outputs: new HashSet<Item>() { Item.RawResource },
+			output: Item.RawResource,
 			prefab: GameManager.prefab.ResourcePrefab
 		));
 	}
