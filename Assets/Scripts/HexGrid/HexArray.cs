@@ -193,7 +193,7 @@ public class HexArray<T> : IEnumerable<T>
 	/// <returns></returns>
 	public bool IsInBounds(int x, int y) 
 	{
-		return x > 0 && y > 0 && x < Width && y < Height;
+		return x >= 0 && y >= 0 && x < Width && y < Height;
 	}
 
 	/// <summary>
