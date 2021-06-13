@@ -16,11 +16,7 @@ public class Connection {
 		this.from = from;
 		this.to = to;
 		this.wires = wireTiles;
-		Stream = from.inputs
-			.Intersect(to.outputs)
-			.Concat(from.outputs
-				.Intersect(to.inputs)
-			).First();
+		Stream = from.outputs.Intersect(to.inputs).First();
 
 		for (int i = 0; i < wireTiles.Count; i++) {
 			var offset = GridManager.offset_to_axial(wireCoordinates[i+2]) - GridManager.offset_to_axial(wireCoordinates[i+1]);
