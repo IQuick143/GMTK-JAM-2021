@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour {
@@ -43,6 +44,13 @@ public class GridManager : MonoBehaviour {
 	void Update() {
 		bool LMB = Input.GetMouseButtonUp(0) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD;
 		bool RMB = Input.GetMouseButtonUp(1) && Vector2.Distance(Input.mousePosition, lastMouseDownPosition) < MOUSE_DRAG_THRESHOLD;
+
+		if (LMB || RMB) {
+			if (EventSystem.current.IsPointerOverGameObject()) {
+				LMB = false;
+				RMB = false;
+			}
+		}
 
 		var old_mouseover = this.mouseoverCoordinates;
 
