@@ -23,17 +23,22 @@ public class MenuManager : MonoBehaviour {
 
 	[Header("Sidebar")]
 	[SerializeField]
-	private TMP_Text sidebarGeneratingOutputText;
+	private TMP_Text sidebarSalesText;
 	[SerializeField]
-	private TMP_Text sidebarRequiredOutputText;
+	private TMP_Text sidebarCostText;
+	[SerializeField]
+	private TMP_Text sidebarProfitText;
 	[SerializeField]
 	private TMP_Text sidebarCurrencyText;
 
 	[SerializeField]
-	private string sidebarGeneratingTextFormat = "Output: {0} $/s";
+	private string salesTextFormat = "Sales: {0} $/s";
 
 	[SerializeField]
-	private string sidebarRequiredTextFormat = "Required: {0} $/s";
+	private string CostTextFormat = "Cost: {0} $/s";
+
+	[SerializeField]
+	private string profitTextFormat = "<b>Profit: {0} $/s</b>";
 
 	[SerializeField]
 	private string sidebarCurrencyTextFormat = "${0}";
@@ -73,8 +78,9 @@ public class MenuManager : MonoBehaviour {
 		tooltipRect.position += Vector3.right * (tooltipRect.sizeDelta.x * 0.5f + OFFSET);
 
 		//Update sidebar generation info
-		sidebarGeneratingOutputText.text = string.Format(sidebarGeneratingTextFormat, GameManager.Instance.CurrentOutputPerSecond);
-		sidebarRequiredOutputText.text = string.Format(sidebarRequiredTextFormat, -1);
+		sidebarSalesText.text = string.Format(salesTextFormat, GameManager.Instance.CurrentOutputPerSecond);
+		sidebarCostText.text = string.Format(CostTextFormat, -1);
+		sidebarProfitText.text = string.Format(profitTextFormat, GameManager.Instance.CurrentOutputPerSecond);
 		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, GameManager.Instance.Currency);
 	}
 
