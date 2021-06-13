@@ -21,6 +21,23 @@ public class MenuManager : MonoBehaviour {
 
 	private List<Icon> input_icons = new List<Icon>();
 
+	[Header("Sidebar")]
+	[SerializeField]
+	private TMP_Text sidebarGeneratingOutputText;
+	[SerializeField]
+	private TMP_Text sidebarRequiredOutputText;
+	[SerializeField]
+	private TMP_Text sidebarCurrencyText;
+
+	[SerializeField]
+	private string sidebarGeneratingTextFormat = "Output: {0} $/s";
+
+	[SerializeField]
+	private string sidebarRequiredTextFormat = "Required: {0} $/s";
+
+	[SerializeField]
+	private string sidebarCurrencyTextFormat = "${0}";
+
 	// Start is called before the first frame update
 	void Start() {
 		this.tooltip.SetActive(false);
@@ -32,9 +49,15 @@ public class MenuManager : MonoBehaviour {
 
 		const int OFFSET = 10;
 
+		//Set tooltip position
 		tooltipRect.position = (Vector2)Input.mousePosition;
 		tooltipRect.position += Vector3.down * (tooltipRect.sizeDelta.y * 0.5f + OFFSET);
 		tooltipRect.position += Vector3.right * (tooltipRect.sizeDelta.x * 0.5f + OFFSET);
+
+		//Update sidebar generation info
+		sidebarGeneratingOutputText.text = string.Format(sidebarGeneratingTextFormat, GameManager.Instance.CurrentOutputPerSecond);
+		sidebarRequiredOutputText.text = string.Format(sidebarRequiredTextFormat, -1);
+		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, GameManager.Instance.Currency);
 	}
 
 	public void HideTooltip() {
