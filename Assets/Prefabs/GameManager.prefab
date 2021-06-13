@@ -1040,7 +1040,7 @@ MonoBehaviour:
   MountainEntityPrefab: {fileID: 7120782686775776249, guid: aaf137f4a3f5946409b5799aa802b330, type: 3}
   RiverEntityPrefab: {fileID: 877173143585145346, guid: 39986ec7b97752f498108cf7fa25a736, type: 3}
   FactoryPrefab: {fileID: 7120782686775776249, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
-  ResourcePrefab: {fileID: 7882530301536801990, guid: 24eba6221157bb34799585ee94471523, type: 3}
+  ResourcePrefabs: []
   MarkedPrefab: {fileID: 6823173857166813438, guid: 3b8eef2b2944799419e25dae3188cdaf, type: 3}
   WirePrefab: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
   WirePreviewPrefab: {fileID: 6325887124244019969, guid: 74a905ad18524c0499fbf1bf6117e526, type: 3}
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   metal: {fileID: 21300000, guid: b335d66e39812a24990cbb9e5d9ca0f9, type: 3}
   metalComponents: {fileID: 21300000, guid: b717206e189388b43bb4c393ed5ab497, type: 3}
   basicTools: {fileID: 21300000, guid: 3c0a8ddffaff14d46b8e3324217b42e9, type: 3}
+  heater: {fileID: 21300000, guid: b93ee213668f7ee458d921791f35538d, type: 3}
   money: {fileID: 21300000, guid: 4520989568749aa439df67ec9ceb57b3, type: 3}
 --- !u!1 &7662663054298280851
 GameObject:
