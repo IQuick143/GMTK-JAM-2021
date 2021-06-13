@@ -14,9 +14,9 @@ public class PrefabManager : MonoBehaviour {
 	public GameObject FurnitureFactory;
 	public GameObject FineFurnitureFactory;
 	public GameObject BasicToolFactory;
+	public GameObject HeaterFactory;
 
 	[Header("Dynamic objects")]
-	public GameObject FactoryPrefab;
 	public List<GameObject> ResourcePrefabs;
 	public GameObject MarkedPrefab;
 
@@ -24,4 +24,5 @@ public class PrefabManager : MonoBehaviour {
 	public GameObject WirePrefab;
 	public GameObject WirePreviewPrefab;
 	public GameObject WireGhostPrefab;
+
 }

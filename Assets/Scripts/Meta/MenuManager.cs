@@ -66,8 +66,15 @@ public class MenuManager : MonoBehaviour {
 		this.tooltipRect = tooltip.GetComponent<RectTransform>();
 		this.availableFactories = new List<GameObject>();
 		this.factorySelectionButtons = new List<FactorySelectionButton>();
+
 		AddFactories(new List<GameObject>() {
-			GameManager.prefab.MetalFactory, GameManager.prefab.PlankFactory
+			GameManager.prefab.PlankFactory,
+			GameManager.prefab.MetalFactory, 
+			GameManager.prefab.MetalComponentFactory,
+			GameManager.prefab.FurnitureFactory,
+			GameManager.prefab.FineFurnitureFactory,
+			GameManager.prefab.BasicToolFactory,
+			GameManager.prefab.HeaterFactory,
 		});
 	}
 
