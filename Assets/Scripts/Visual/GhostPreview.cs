@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class GhostPreview : MonoBehaviour {
 	[SerializeField]
-	private new Renderer renderer;
+	private Renderer[] renderers;
 	public bool valid = true;
+
+	public Color BaseColor;
+	public Color ValidColor;
+	public Color InvalidColor;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -14,6 +18,7 @@ public class GhostPreview : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		renderer.material.color = Color.Lerp(Color.gray, valid?Color.white:Color.red, 0.6f + 0.5f * Mathf.Sin(3 * Time.realtimeSinceStartup));
+		foreach (var i in renderers)
+			i.material.color = Color.Lerp(BaseColor, valid ? ValidColor : InvalidColor, 0.6f + 0.5f * Mathf.Sin(3 * Time.realtimeSinceStartup));
 	}
 }

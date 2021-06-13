@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9401ba3d6ea8b4ca9629b23ef05c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 7325478120307006254}
+  renderers:
+  - {fileID: 4294112599948523963}
+  - {fileID: 6162105585951624603}
   valid: 1
+  BaseColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+  ValidColor: {r: 1, g: 1, b: 1, a: 0.67058825}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 0.67058825}
 --- !u!1001 &4478406556226607582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21,10 +26,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 410319741809270885, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c51bdfed6a456634cb40d5abbc0a5b66, type: 2}
     - target: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
       propertyPath: m_Name
-      value: GhostWire
+      value: GhostWire Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7755846620858684485, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c51bdfed6a456634cb40d5abbc0a5b66, type: 2}
     - target: {fileID: 8144150817315235076, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -77,8 +90,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
   m_PrefabInstance: {fileID: 4478406556226607582}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &7325478120307006254 stripped
+--- !u!23 &4294112599948523963 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6597540910968423152, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 410319741809270885, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+  m_PrefabInstance: {fileID: 4478406556226607582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6162105585951624603 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7755846620858684485, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
   m_PrefabInstance: {fileID: 4478406556226607582}
   m_PrefabAsset: {fileID: 0}
