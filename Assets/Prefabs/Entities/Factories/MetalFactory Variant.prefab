@@ -19,6 +19,26 @@ PrefabInstance:
       propertyPath: _inputs.Array.data[0]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1118763209489326014, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa64b4ac4b9efce469f0ae5e52ba2590, type: 2}
+    - target: {fileID: 4997737458214438113, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49dc8991f375c38418db2b0cbacab8d6, type: 2}
+    - target: {fileID: 5068587928312046402, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49dc8991f375c38418db2b0cbacab8d6, type: 2}
+    - target: {fileID: 6092459754733274680, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49dc8991f375c38418db2b0cbacab8d6, type: 2}
+    - target: {fileID: 7021990621667026729, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa64b4ac4b9efce469f0ae5e52ba2590, type: 2}
     - target: {fileID: 7120782686775776249, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: m_Name
       value: MetalFactory Variant
@@ -67,5 +87,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8306369131726367705, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49dc8991f375c38418db2b0cbacab8d6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
