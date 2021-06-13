@@ -25,8 +25,8 @@ public class GridManager : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		int size_x = 100;
-		int size_y = 100;
+		int size_x = 40;
+		int size_y = 40;
 		tiles = new HexArray<TileHandler>(size_x, size_y);
 		for (int x = 0; x < size_x; x++) {
 			for (int y = 0; y < size_y; y++) {
