@@ -183,12 +183,12 @@ MonoBehaviour:
   MountainAmplitudeCutoff: 0.7
   MountainNoiseScale: 15
   MinRiverCount: 2
-  MaxRiverCount: 2
-  MinRiverLength: 8
-  MaxRiverLength: 20
-  RiverMaxRotationAngle: 2
-  RiverMinRotationFrequency: 3
-  RiverMaxRotationFrequency: 8
+  MaxRiverCount: 8
+  MinRiverLength: 10
+  MaxRiverLength: 40
+  RiverMaxRotationAngle: 1
+  RiverMinRotationFrequency: 5
+  RiverMaxRotationFrequency: 10
   ResourceCount: 10
   Seed: 0
   UseRandomSeed: 1
