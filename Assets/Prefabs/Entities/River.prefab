@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8040529620357845438}
   - component: {fileID: 5929522839972602266}
+  - component: {fileID: 2046977839674181180}
   m_Layer: 0
   m_Name: River
   m_TagString: Untagged
@@ -46,6 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   groundRenderer: {fileID: 6342694044202175771}
+--- !u!114 &2046977839674181180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877173143585145346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e67e19a03303bb45a331acba46e9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5747810288678900127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,7 +88,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a630c397e1386ab4b9638d24bc2a777a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.214
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a630c397e1386ab4b9638d24bc2a777a, type: 3}
       propertyPath: m_LocalPosition.z
