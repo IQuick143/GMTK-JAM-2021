@@ -5,27 +5,28 @@ using System.Linq;
 using UnityEngine;
 
 public class Connectable : Entity {
-	public List<Item> inputs {get; private set;}
+	public List<Item> inputs {get {return _inputs;} private set {_inputs = value;}}
 	public Dictionary<Item, List<Connectable>> input_dependencies {get; private set;}
-	public Item output {get; private set;}
+	public Item output {get {return _output;} private set {_output = value;}}
 	public Connectable output_connected {get; private set;}
 
-	public List<Connection> connections = new List<Connection>();
-
-	private GameObject prefab;
+	public List<Connection> connections;
 
 	private bool isBeingDeleted = false;
 
 	public bool active {get; private set;}
 
-	public Connectable(HashSet<Item> inputs, Item output, GameObject prefab) {
-		this.inputs = inputs.ToList<Item>();
+	[SerializeField]
+	private List<Item> _inputs;
+	[SerializeField]
+	private Item _output;
+
+	void Awake() {
+		this.connections = new List<Connection>();
 		this.input_dependencies = new Dictionary<Item, List<Connectable>>();
 		foreach (Item item in this.inputs) {
 			input_dependencies[item] = new List<Connectable>();
 		}
-		this.output = output;
-		this.prefab = prefab;
 		UpdateActivation();
 	}
 
@@ -61,11 +62,7 @@ public class Connectable : Entity {
 		}
 	}
 
-	public override GameObject CreateVisualObject() {
-		return UnityEngine.GameObject.Instantiate(prefab);
-	}
-
-	public override void Delete() {
+	void OnDestroy() {
 		isBeingDeleted = true;
 		foreach (var connection in connections) {
 			connection.Disconnect();

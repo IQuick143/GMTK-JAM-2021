@@ -77,7 +77,7 @@ public class GridGenerator : MonoBehaviour
 			for (int riverPosition = 0; riverPosition < riverLength; riverPosition++)
 			{
 				//Place tile
-				tiles[x, y].SetObject(new RiverBase());
+				tiles[x, y].SetObject(GameManager.prefab.RiverEntityPrefab);
 
 				//Rotate river
 				if (--stepsToDirectionChange == 0)
@@ -127,7 +127,7 @@ public class GridGenerator : MonoBehaviour
 				);
 
 				if (noiseLevel >= MountainAmplitudeCutoff && tiles[x, y].IsEmpty)
-					tiles[x, y].SetObject(new Mountain());
+					tiles[x, y].SetObject(GameManager.prefab.MountainEntityPrefab);
 			}
 		}
 
@@ -151,13 +151,8 @@ public class GridGenerator : MonoBehaviour
 				y = RNG.Next(tiles.Height);
 			} while (!tiles[x, y].IsEmpty);
 
-			manager.market = new Connectable(
-				inputs: new HashSet<Item>() { Item.FactoryProduct },
-				output: Item.Money,
-				prefab: GameManager.prefab.MarkedPrefab
-			);
-
-			tiles[x, y].SetObject(manager.market);
+			tiles[x, y].SetObject(GameManager.prefab.MarkedPrefab);
+			manager.market = tiles[x, y].entity as Connectable;
 		}
 	}
 
@@ -177,10 +172,6 @@ public class GridGenerator : MonoBehaviour
 			y = RNG.Next(manager.tiles.Height);
 		} while (!manager.tiles[x, y].IsEmpty);
 
-		manager.tiles[x, y].SetObject(new Connectable(
-			inputs: new HashSet<Item>(),
-			output: Item.RawResource,
-			prefab: GameManager.prefab.ResourcePrefab
-		));
+		manager.tiles[x, y].SetObject(GameManager.prefab.ResourcePrefab);
 	}
 }

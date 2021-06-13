@@ -56,29 +56,20 @@ public class TileHandler : MonoBehaviour {
 		return this.manager.tiles.GetNeighbours(this.x, this.y);
 	}
 
-	public void SetObject(Entity entity) {
+	public void SetObject(GameObject prefab) {
 		if (this.entity != null) {
-			entity.Delete();
+			Destroy(this.visualObject);
 		}
-		this.entity = entity;
-		this.UpdateVisuals();
+		this.visualObject = Instantiate(prefab);
+		this.entity = this.visualObject.GetComponent<Entity>();
+		this.visualObject.transform.position = transform.position;
+		this.visualObject.transform.SetParent(this.transform);
 	}
 
 	public void DeleteObject() {
 		if (this.entity != null) {
-			entity.Delete();
+			Destroy(this.visualObject);
 			this.entity = null;
-		}
-		UpdateVisuals();
-	}
-
-	public void UpdateVisuals() {
-		if (visualObject != null) Destroy(visualObject);
-
-		if (entity != null) {
-			this.visualObject = entity.CreateVisualObject();
-			this.visualObject.transform.position = transform.position;
-			this.visualObject.transform.SetParent(this.transform);
 		}
 	}
 
@@ -94,11 +85,7 @@ public class TileHandler : MonoBehaviour {
 	public void OnLMB() {
 		this.groundRenderer.material.color = (this.y % 2 == 1)?Color.gray:Color.white;
 		if (IsEmpty) {
-			SetObject(new Connectable(
-				inputs: new HashSet<Item>() {Item.RawResource}, 
-				output: Item.FactoryProduct, 
-				prefab: GameManager.prefab.FactoryPrefab)
-			);
+			SetObject(GameManager.prefab.FactoryPrefab);
 		} else if (this.entity.GetType() == typeof(Connectable)) {
 			this.manager.BeginConnecting(this.x, this.y);
 		}

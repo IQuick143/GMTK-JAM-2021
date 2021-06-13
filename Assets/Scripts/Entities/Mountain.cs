@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
+// Another magnificient beast of a class
 public class Mountain : Entity {
-	public override GameObject CreateVisualObject() {
-		return GameObject.Instantiate(GameManager.prefab.MountainEntityPrefab);
-	}
-
-	public override void Delete() {
-		
-	}
 }

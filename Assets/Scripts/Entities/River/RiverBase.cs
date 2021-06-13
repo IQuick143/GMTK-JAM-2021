@@ -6,15 +6,5 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-public class RiverBase : Entity
-{
-	public override GameObject CreateVisualObject()
-	{
-		return GameObject.Instantiate(GameManager.prefab.RiverEntityPrefab);
-	}
-
-	public override void Delete()
-	{
-		
-	}
-}
+// The most useful class of them all
+public class RiverBase : Entity {}

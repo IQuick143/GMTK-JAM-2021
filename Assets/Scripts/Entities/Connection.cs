@@ -35,8 +35,8 @@ public class Connection {
 				dir = HexDirection.Left;
 			}
 
-			Wire wire = new Wire(this, dir);
-			this.wires[i].SetObject(wire);
+			wires[i].SetObject(GameManager.prefab.WirePrefab);
+			((Wire) wires[i].entity).SetConnection(this, dir);
 		}
 
 		var first_offset = GridManager.offset_to_axial(wireCoordinates[1]) - GridManager.offset_to_axial(wireCoordinates[0]);
@@ -59,7 +59,7 @@ public class Connection {
 		startingConnection = new GameObject();
 		var fake_wire = GameObject.Instantiate(GameManager.prefab.WirePrefab);
 		fake_wire.transform.SetParent(startingConnection.transform);
-		startingConnection.transform.rotation = Quaternion.AngleAxis(first_dir.ToDegrees(), Vector3.up);
+		fake_wire.GetComponent<Wire>().SetConnection(this, first_dir);
 		startingConnection.transform.position = fromCoordinate;
 
 		from.Connect(this);

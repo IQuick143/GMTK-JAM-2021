@@ -8,7 +8,6 @@ using UnityEngine;
 /// <summary>
 /// Anything that can be placed on a tile
 /// </summary>
-public abstract class Entity {
-	public abstract GameObject CreateVisualObject();
-	public abstract void Delete();
+public abstract class Entity : MonoBehaviour {
+	
 }

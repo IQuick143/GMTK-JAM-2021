@@ -30,6 +30,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c51bdfed6a456634cb40d5abbc0a5b66, type: 2}
+    - target: {fileID: 5731044862109077414, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7632598458471473887, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
       propertyPath: m_Name
       value: GhostWire Variant
@@ -48,7 +52,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144150817315235076, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8144150817315235076, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82,8 +86,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8946432010296619648, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1168919178666426922, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
+    - {fileID: -2128988035259454683, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 44dfab02d242edd4d8449bf9f3b04df0, type: 3}
 --- !u!1 &6325887124244019969 stripped
 GameObject:
