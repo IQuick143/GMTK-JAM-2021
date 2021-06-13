@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
 	public static SpriteManager sprite {get; private set; }
 	public int CurrentOutputPerSecond { get; set; }
 
+	[Header("Money")]
+	public float CostIncreasePerSecond = 2 / 3f;
+
+	public float CurrentCost;
+
 	public int Currency;
 
 	void Awake() {
@@ -35,11 +40,21 @@ public class GameManager : MonoBehaviour {
 		menu = this.GetComponent<MenuManager>();
 		sprite = this.GetComponent<SpriteManager>();
 		
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		Assert.IsNotNull(GameManager.prefab);
 		Assert.IsNotNull(GameManager.input);
 		Assert.IsNotNull(GameManager.menu);
 		Assert.IsNotNull(GameManager.sprite);
-		#endif
+#endif
+
+		InvokeRepeating(nameof(IncreaseCosts), 1f, 1f);
+	}
+
+	public void IncreaseCosts()
+	{
+		if (CurrentOutputPerSecond == 0)
+			return;
+
+		CurrentCost += CostIncreasePerSecond;
 	}
 }

@@ -79,9 +79,14 @@ public class MenuManager : MonoBehaviour {
 
 		//Update sidebar generation info
 		sidebarSalesText.text = string.Format(salesTextFormat, GameManager.Instance.CurrentOutputPerSecond);
-		sidebarCostText.text = string.Format(CostTextFormat, -1);
-		sidebarProfitText.text = string.Format(profitTextFormat, GameManager.Instance.CurrentOutputPerSecond);
+		sidebarCostText.text = string.Format(CostTextFormat, (int)GameManager.Instance.CurrentCost);
+		sidebarProfitText.text = string.Format(profitTextFormat, GameManager.Instance.CurrentOutputPerSecond - (int)GameManager.Instance.CurrentCost);
 		sidebarCurrencyText.text = string.Format(sidebarCurrencyTextFormat, GameManager.Instance.Currency);
+
+		if (GameManager.Instance.CurrentOutputPerSecond < (int)GameManager.Instance.CurrentCost)
+			sidebarProfitText.color = Color.red;
+		else
+			sidebarProfitText.color = Color.black;
 	}
 
 	public void AddFactories(List<GameObject> factoriesToAdd) {
