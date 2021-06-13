@@ -136,7 +136,7 @@ public class GridGenerator : MonoBehaviour
 		 */
 
 		for (int i = 0; i < ResourceCount; i++)
-			GenerateRandomResource(manager);
+			GenerateRandomResource(manager, i % 2);
 
 		/*
 		 * Generate market
@@ -160,7 +160,7 @@ public class GridGenerator : MonoBehaviour
 	/// Generates a random resource in a random location
 	/// </summary>
 	/// <param name="manager"></param>
-	private void GenerateRandomResource(GridManager manager)
+	private void GenerateRandomResource(GridManager manager, int prefabIndex)
 	{
 		//TODO: Make sure this is balanced
 
@@ -172,6 +172,6 @@ public class GridGenerator : MonoBehaviour
 			y = RNG.Next(manager.tiles.Height);
 		} while (!manager.tiles[x, y].IsEmpty);
 
-		manager.tiles[x, y].SetObject(GameManager.prefab.ResourcePrefab);
+		manager.tiles[x, y].SetObject(GameManager.prefab.ResourcePrefabs[prefabIndex]);
 	}
 }
