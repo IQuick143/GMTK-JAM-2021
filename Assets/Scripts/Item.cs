@@ -19,4 +19,11 @@ public static class ItemExtensions {
 			default: return 0;
 		}
 	}
+	public static UnityEngine.Color GetColour(this Item item) {
+		switch (item) {
+			case Item.RawResource: return UnityEngine.Color.gray;
+			case Item.FactoryProduct: return UnityEngine.Color.cyan;
+			default: return UnityEngine.Color.white;
+		}
+	}
 }
