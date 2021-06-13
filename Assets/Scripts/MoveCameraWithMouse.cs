@@ -17,6 +17,7 @@ public class MoveCameraWithMouse : MonoBehaviour
 	private void Awake()
 	{
 		_cam = Camera.main;
+		_cam.transform.position = new Vector3(10f, 5f, 10f);
 	}
 
 	private void Update()
@@ -40,8 +41,7 @@ public class MoveCameraWithMouse : MonoBehaviour
 		transform.position += transform.forward * scroll * 5f;
 
 		//Clamp position
-		transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 1f, 20f), transform.position.z);
-
+		transform.position = new Vector3(Mathf.Clamp(transform.position.x, -5f, 40f), Mathf.Clamp(transform.position.y, 1f, 20f), Mathf.Clamp(transform.position.z, -5f, 40f));
 	}
 
 	private Vector3 Rationalize(Vector2 vec) {
