@@ -42,7 +42,6 @@ public class TileHandler : MonoBehaviour {
 	}
 	private bool showing_tooltip = false;
 
-	// Makes the TileHandler calculate the world coordinates to place itself at
 	public void SetGeometry(int x, int y, float radius) {
 		this.x = x;
 		this.y = y;
