@@ -145,11 +145,8 @@ public class GridGenerator : MonoBehaviour
 		{
 			int x, y;
 
-			do
-			{
-				x = RNG.Next(tiles.Width);
-				y = RNG.Next(tiles.Height);
-			} while (!tiles[x, y].IsEmpty);
+			x = tiles.Width / 2;
+			y = tiles.Height / 2;
 
 			tiles[x, y].SetObject(GameManager.prefab.MarkedPrefab);
 			manager.market = tiles[x, y].entity as Connectable;
