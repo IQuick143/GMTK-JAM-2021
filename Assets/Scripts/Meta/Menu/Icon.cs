@@ -8,6 +8,9 @@ public class Icon : MonoBehaviour {
 	public void ShowItem(Item item) {
 		this.GetComponent<Image>().sprite = item.GetItemIcon();
 	}
+	public void ShowSprite(Sprite sprite) {
+		this.GetComponent<Image>().sprite = sprite;
+	}
 
 	public void Remove() {
 		Destroy(this.gameObject);

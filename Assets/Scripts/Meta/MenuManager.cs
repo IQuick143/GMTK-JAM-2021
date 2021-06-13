@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour {
 	[Header("Tooltip")]
 	[SerializeField]
 	private GameObject tooltip;
+	private Connectable currentlyDisplayedConnectable = null;
 	private RectTransform tooltipRect;
 	[SerializeField]
 	private TMP_Text text;
@@ -112,9 +113,18 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void ShowConnectableTooltip(Connectable connectable) {
+		currentlyDisplayedConnectable = connectable;
 		DeleteIcons();
-		foreach (Item item in (Item[]) System.Enum.GetValues(typeof(Item))) {
-			if (connectable.inputs.Contains(item)) input_icons.Add(CreateIcon(item, inputs.transform));
+		switch (connectable.type) {
+			case Connectable.Type.Factory: {
+				foreach (Item item in (Item[]) System.Enum.GetValues(typeof(Item))) {
+					if (connectable.inputs.Contains(item)) input_icons.Add(CreateIcon(item, inputs.transform));
+				} break;
+			}
+			case Connectable.Type.Market: {
+				input_icons.Add(CreateIcon(GameManager.sprite.Anything, inputs.transform));
+				break;
+			}
 		}
 
 		output_icon.ShowItem(connectable.output);
@@ -122,6 +132,10 @@ public class MenuManager : MonoBehaviour {
 		this.tooltip.SetActive(true);
 		this.text.text = connectable.ToString();
 		this.tooltip.SetActive(true);
+	}
+
+	public void UpdateConnectableTooltip() {
+		ShowConnectableTooltip(currentlyDisplayedConnectable);
 	}
 
 	private Icon CreateIcon(Item item) {
@@ -133,6 +147,12 @@ public class MenuManager : MonoBehaviour {
 	private Icon CreateIcon(Item item, Transform parent) {
 		Icon icon = Instantiate(icon_prefab, parent).GetComponent<Icon>();
 		icon.ShowItem(item);
+		return icon;
+	}
+
+	private Icon CreateIcon(Sprite sprite, Transform parent) {
+		Icon icon = Instantiate(icon_prefab, parent).GetComponent<Icon>();
+		icon.ShowSprite(sprite);
 		return icon;
 	}
 

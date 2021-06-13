@@ -15,4 +15,5 @@ public class SpriteManager : MonoBehaviour {
 	public Sprite basicTools;
 	public Sprite heater;
 	public Sprite money;
+	public Sprite Anything;
 }

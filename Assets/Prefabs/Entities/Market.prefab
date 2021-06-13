@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1091076492346053447}
   - component: {fileID: -2249431432393318388}
   m_Layer: 0
-  m_Name: Marked
+  m_Name: Market
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,5 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af45f45f122f7f24ea5ba03ed8d5571d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputs: 0000000001000000
-  _output: 2
+  _inputs: 
+  _output: 9
+  name: Market
+  type: 2

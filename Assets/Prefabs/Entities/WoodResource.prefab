@@ -47,6 +47,7 @@ MonoBehaviour:
   _inputs: 
   _output: 0
   name: Wood Forest
+  type: 1
 --- !u!1 &9055958208231288288
 GameObject:
   m_ObjectHideFlags: 0

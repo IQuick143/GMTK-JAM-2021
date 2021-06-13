@@ -23,18 +23,24 @@ public class Connectable : Entity {
 
 	[SerializeField]
 	private new string name;
+	[SerializeField]
+	public Type type;
 
 	void Awake() {
 		this.connections = new List<Connection>();
 		this.input_dependencies = new Dictionary<Item, List<Connectable>>();
-		foreach (Item item in this.inputs) {
+		if (type == Type.Market) {
+			foreach (Item item in System.Enum.GetValues(typeof(Item))) {
+				input_dependencies[item] = new List<Connectable>();
+			}
+		} else foreach (Item item in this.inputs) {
 			input_dependencies[item] = new List<Connectable>();
 		}
 		UpdateActivation();
 	}
 
 	public bool CanConnect(Connectable other) {
-		return this.inputs.Contains(other.output) && other.output_connected == null || other.inputs.Contains(this.output) && this.output_connected == null;
+		return (this.type == Type.Market || this.inputs.Contains(other.output)) && other.output_connected == null || (other.type == Type.Market || other.inputs.Contains(this.output)) && this.output_connected == null;
 	}
 
 	public Item? GetCompatiblePorts(Connectable other) {
@@ -85,6 +91,17 @@ public class Connectable : Entity {
 	}
 
 	public override string ToString() {
+		switch (type) {
+			case Type.Factory: return $"{this.name} ({(active?"Active":"Inactive")})";
+			case Type.Market: return $"{this.name}";
+			case Type.Source: return $"{this.name}";
+		}
 		return $"{this.name} ({(active?"Active":"Inactive")})";
+	}
+
+	public enum Type {
+		Factory,
+		Source,
+		Market
 	}
 }
