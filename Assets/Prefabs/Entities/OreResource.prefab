@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputs: 
   _output: 4
-  name: Ore Mine
+  factoryname: Ore mines
+  price: 0
   type: 1
   Icon: {fileID: 0}
 --- !u!1001 &2490460363432454733

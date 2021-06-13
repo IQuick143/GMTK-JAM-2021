@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputs: 
   _output: 0
-  name: Wood Forest
+  factoryname: Wood trees
+  price: 0
   type: 1
   Icon: {fileID: 0}
 --- !u!1001 &771913386830797115

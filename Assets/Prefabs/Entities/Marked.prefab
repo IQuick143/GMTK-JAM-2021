@@ -89,8 +89,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputs: 0000000001000000
-  _output: 2
-  name: The Market
+  _output: 9
+  factoryname: 'The '
+  price: 0
   type: 2
   Icon: {fileID: 0}
 --- !u!1001 &3612032942279115482

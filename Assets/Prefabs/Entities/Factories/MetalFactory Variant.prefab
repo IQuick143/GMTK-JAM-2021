@@ -16,6 +16,10 @@ PrefabInstance:
       value: Metal Refinery
       objectReference: {fileID: 0}
     - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
+      propertyPath: price
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4474514696187529072, guid: bdf6b28b4ce424a47bf56c8cc8c55433, type: 3}
       propertyPath: _output
       value: 5
       objectReference: {fileID: 0}
