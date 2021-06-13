@@ -151,13 +151,13 @@ public class GridGenerator : MonoBehaviour
 				y = RNG.Next(tiles.Height);
 			} while (!tiles[x, y].IsEmpty);
 
-			manager.marked = new Connectable(
+			manager.market = new Connectable(
 				inputs: new HashSet<Item>() { Item.FactoryProduct },
 				outputs: new HashSet<Item>(),
 				prefab: GameManager.prefab.MarkedPrefab
 			);
 
-			tiles[x, y].SetObject(manager.marked);
+			tiles[x, y].SetObject(manager.market);
 
 			
 		}
